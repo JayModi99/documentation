@@ -1,0 +1,17 @@
+---
+title: "Consumable entities"
+description: "Models, UoM, photos, stock balances, and inventory transactions."
+---
+
+# Consumable entities
+
+| Entity | Role |
+|--------|------|
+| `ConsumableCategory` | Category master |
+| `ConsumableUnitOfMeasure` | UoM master |
+| `ConsumableModel` | Stockable SKU |
+| `ConsumableModelPhoto` | Photos (primary flag) |
+| `ConsumableStockBalance` | On-hand qty at (model, site, location) |
+| `ConsumableTransaction` | Ledger of receive/issue/transfer/adjust/dispose/reversal |
+
+Transaction types and stock effects are documented under [Consumable transactions](/consumables/transactions).

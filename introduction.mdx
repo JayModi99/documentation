@@ -1,0 +1,60 @@
+---
+title: "AssetMate Pro Documentation"
+description: "Production documentation for AssetMate Pro — fixed asset management, depreciation, procurement, tickets, consumables, and the Windows IT Device Agent."
+---
+
+# AssetMate Pro
+
+AssetMate Pro is a multi-tenant fixed-asset management platform spanning **web (Angular)**, **mobile (Flutter)**, **API (.NET 10)**, and a **Windows IT Device Agent**. This hub documents every shipped module, schema field, workflow, background job, integration, and HTTP endpoint present in the codebase as of July 2026.
+
+<Tip>
+This documentation is generated from the live codebase: 56 API controllers (~452 endpoints), 99 entity types, and the Windows agent payload contract `schema_version: 2`.
+</Tip>
+
+## What you can do
+
+| Domain | Capabilities |
+|--------|----------------|
+| **Assets** | Register, tag, import/export, kits, assemblies/components, documents, conditions |
+| **Lifecycle** | Checkout, check-in, reserve, lease (+ billing), maintenance WOs, dispose, transfer |
+| **Finance** | Dual-book depreciation (Income Tax IA + Companies Act CA), FY/month locks, compliance reports |
+| **Purchase** | Purchase requests → orders → receive (creates assets / consumable stock) |
+| **Consumables** | Models, UoM, stock balances, receive/issue/transfer/adjust/dispose/reverse |
+| **Tickets** | Configurable statuses/priorities/categories, agent groups, canned responses, SLA timestamps |
+| **IT Agent** | Org-token enrollment, inventory sync, SignalR remote commands, MSI auto-update |
+| **Identity** | Password auth, Microsoft Entra SSO, RBAC permissions, multi-company switching |
+
+## Stack
+
+| Layer | Technology |
+|-------|------------|
+| API | .NET 10, EF Core, JWT + device-scoped JWT |
+| DB | PostgreSQL or SQL Server (`Database:Provider`) |
+| Web | Angular SPA |
+| Mobile | Flutter |
+| Agent | .NET 8 Windows Worker Service |
+| Storage | AWS S3 (`IFileStorageService`) |
+| Email | SMTP via in-process `EmailBackgroundService` |
+
+## Start here
+
+<CardGroup cols={3}>
+  <Card title="Quickstart" icon="rocket" href="/getting-started/quickstart">
+    Register, create a company, and create your first asset.
+  </Card>
+  <Card title="Asset schema" icon="database" href="/models/asset">
+    Exact `Asset` entity fields and types.
+  </Card>
+  <Card title="API overview" icon="code" href="/api-reference/overview">
+    Base URL, auth headers, and response envelope.
+  </Card>
+</CardGroup>
+
+## Honest scope notes
+
+AssetMate Pro docs and plans sometimes describe future work. This hub only documents **what exists in code**:
+
+- **Shipped integrations:** Microsoft Entra SSO, SMTP email, AWS S3, public tag scan, Windows agent + SignalR.
+- **Not shipped:** Slack/Teams webhooks, Google SSO, Hangfire/Quartz, MDM (Intune/Jamf), push/SMS/WhatsApp delivery, directory sync APIs.
+
+See [What is not implemented](/jobs/what-is-not-implemented) and [Roadmap (not shipped)](/integrations/roadmap-not-shipped).

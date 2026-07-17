@@ -1,0 +1,24 @@
+---
+title: "Remote commands"
+description: "Queue, SignalR notify, claim, ack, result — exactly-once execution."
+---
+
+# Remote commands
+
+## Dashboard
+
+`POST /api/v1/devices/{deviceId}/commands` · `devices.control`  
+List/get/cancel under the same prefix.
+
+## Agent
+
+| Method | Path |
+|--------|------|
+| SignalR | `/api/v1/agent/commands-hub` |
+| POST | `/api/v1/agent/commands/claim` |
+| POST | `/api/v1/agent/commands/{id}/ack` |
+| POST | `/api/v1/agent/commands/{id}/result` |
+
+Command set: Fetch Now, Update Schedule, Pause, Resume, Stop, Restart, Uninstall.
+
+Agent inbox states: Pending → Executed → Reported (exactly once). SQL is authoritative; SignalR is a nudge.

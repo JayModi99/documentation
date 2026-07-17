@@ -1,0 +1,28 @@
+---
+title: "Common & geo masters API"
+description: "Upload URLs and country/state/city/industry lookups."
+---
+
+# Common & geo masters API
+
+## Common — `/api/v1/Common`
+
+| Method | Path | Auth |
+|--------|------|------|
+| GET | `/upload-url?fileName=&contentType=` | Authorize |
+
+## Master — `/api/v1/Master`
+
+| Method | Path | Auth |
+|--------|------|------|
+| GET | `/countries` | **AllowAnonymous** |
+| GET | `/states/{countryId}` | Authorize |
+| GET | `/cities/{stateId}` | Authorize |
+| GET | `/cities/search?q=&limit=` | Authorize |
+| GET | `/city/{cityId}` | Authorize |
+| GET | `/industries` | Authorize |
+| GET | `/company-sizes` | Authorize |
+
+## Health
+
+`GET /health` — anonymous.

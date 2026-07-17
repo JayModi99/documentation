@@ -1,0 +1,33 @@
+---
+title: "Database migrations"
+description: "EF Core migrations, soft-delete filters, and startup migration behavior."
+---
+
+# Database migrations
+
+Migrations live under:
+
+- `backend/src/AssetMatePro.Infrastructure.Postgres/Migrations/`
+- SQL Server provider project (when used)
+
+## Patterns
+
+| Pattern | Implementation |
+|---------|----------------|
+| Soft delete | `BaseEntity.IsDeleted` + global query filter |
+| UTC timestamps | Converter on all `DateTime` columns |
+| Audit | `AuditableEntity.CreatedBy` / `UpdatedBy` set in `SaveChangesAsync` |
+| Concurrency | `RowVersion` on `Device`, `DeviceCommand` |
+
+## Applying migrations
+
+Use the project's standard EF tooling (see `docs/dotnet-commands.md`). Production deployments apply pending migrations on startup when configured.
+
+## Notable recent migrations
+
+| Migration | Domain |
+|-----------|--------|
+| `TicketTier0Foundation` | Ticket settings foundation |
+| `TicketMastersPackage` | Status/priority/category/groups/canned + number format |
+
+Always treat migration history in the Infrastructure provider project as the schema source of truth — not spreadsheets under `docs/`.

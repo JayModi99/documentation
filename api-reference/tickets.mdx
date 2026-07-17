@@ -1,0 +1,31 @@
+---
+title: "Tickets API"
+description: "TicketController workflow endpoints."
+---
+
+# Tickets API
+
+Base: `/api/v1/Ticket`
+
+| Method | Path | Permission |
+|--------|------|------------|
+| GET | `/` | `tickets.view_all` |
+| GET | `/my` | `tickets.view` |
+| GET | `/assigned` | view |
+| GET | `/export` | export |
+| GET | `/my/export` | export |
+| GET | `/assigned/export` | export |
+| GET | `/{id}` | view |
+| GET | `/{id}/activity` | view |
+| POST | `/attachment-upload-urls` | view |
+| POST | `/` | create |
+| PUT | `/{id}` | update |
+| PUT | `/{id}/assign` | assign |
+| PUT | `/{id}/resolve` | resolve |
+| PUT | `/{id}/close` | close |
+| PUT | `/{id}/cancel` | close |
+| PUT | `/{id}/hold` | assign |
+| PUT | `/{id}/unhold` | assign |
+| PUT | `/{id}/reopen` | resolve |
+| DELETE | `/{id}` | delete |
+| POST | `/{id}/comments` | comment |

@@ -1,0 +1,26 @@
+---
+title: "Sites, locations & departments"
+description: "Organizational placement masters for assets and stock."
+---
+
+# Sites, locations & departments
+
+## Site (`TenantEntity`)
+
+Physical or logical site belonging to a company. Supports categories via `SiteCategory` (`/api/v1/site-categories` with merge).
+
+API: `/api/v1/Site` — CRUD, status, import/export, activity.
+
+## Location (`AuditableEntity`)
+
+Location under a site, typed by `LocationType`. API: `/api/v1/Location`.  
+Location types: `/api/v1/location-types` (create/rename/delete/merge) requiring `locations.manage_types`.
+
+## Department (`AuditableEntity`)
+
+Organizational department for assignment filters. API: `/api/v1/Department`.
+
+## Hierarchy rules used by lifecycle
+
+- Checkout/check-in/lease return validate that `LocationId` belongs to the selected `SiteId`.
+- Consumable stock balances are keyed by `(ConsumableModelId, SiteId, LocationId)`.

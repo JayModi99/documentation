@@ -1,0 +1,50 @@
+---
+title: "Agent & devices API"
+description: "Enrollment, sync, commands, tokens, versions, and device admin."
+---
+
+# Agent & devices API
+
+## Device-facing
+
+| Method | Path | Auth |
+|--------|------|------|
+| POST | `/api/v1/agent/enroll` | Anonymous + `X-Org-Token` + enroll rate limit |
+| POST | `/api/v1/agent/sync` | DeviceOnly + sync rate limit |
+| POST | `/api/v1/agent/commands/claim` | DeviceOnly |
+| POST | `/api/v1/agent/commands/{commandId}/ack` | DeviceOnly |
+| POST | `/api/v1/agent/commands/{commandId}/result` | DeviceOnly |
+| GET | `/api/v1/agent/updates/{version}` | DeviceOnly |
+| WS | `/api/v1/agent/commands-hub` | DeviceOnly |
+
+### Enroll request example
+
+```http
+POST /api/v1/agent/enroll HTTP/1.1
+X-Org-Token: amp_org_xxxxxxxx
+Content-Type: application/json
+
+{
+  "schema_version": 2,
+  "sync_type": "full",
+  "collected_at": "2026-07-16T12:00:00Z",
+  "device_id": null,
+  "agent": { "version": "1.2.0", "os_platform": "windows", "sync_interval_minutes": 60, "status": "active" }
+}
+```
+
+## Org tokens — `/api/v1/agent-tokens`
+
+GET list/get; POST create; DELETE revoke.
+
+## Agent versions — `/api/v1/agent-versions`
+
+upload-url, create, list, promote, pause, resume, delete (`agentversions.manage`).
+
+## Devices — `/api/v1/devices`
+
+list, get, software, revoke, delete.
+
+## Device commands — `/api/v1/devices/{deviceId}/commands`
+
+POST queue; GET list/get; POST cancel.

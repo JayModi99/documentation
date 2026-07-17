@@ -1,0 +1,10 @@
+---
+title: "Email pipeline"
+description: "EmailChannel queue consumed by EmailBackgroundService over SMTP."
+---
+
+# Email pipeline
+
+`IEmailService` → channel → `EmailBackgroundService` → SMTP (`Smtp:*` config).
+
+Used for OTP verification, password reset, user invite, checkout acknowledgement HTML.

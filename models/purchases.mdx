@@ -1,0 +1,26 @@
+---
+title: "Purchase entities"
+description: "PurchaseRequest, PurchaseOrder, lines, receipts, and attachments."
+---
+
+# Purchase entities
+
+| Entity | Inherits | Role |
+|--------|----------|------|
+| `PurchaseRequest` | TenantEntity | Requisition header |
+| `PurchaseRequestLine` | BaseEntity | Asset/Consumable lines |
+| `PurchaseOrder` | TenantEntity | PO header + payment fields |
+| `PurchaseOrderLine` | BaseEntity | Ordered quantities/costs |
+| `PurchaseOrderAttachment` | BaseEntity | Documents |
+| `PurchaseOrderReceipt` | TenantEntity | Receive event |
+| `PurchaseOrderReceiptLine` | BaseEntity | Qty received per line |
+| `PurchaseOrderReceiptAsset` | BaseEntity | Assets created on receive |
+
+## Status enums
+
+**PR:** Draft → PendingApproval → Approved → Converted (or Rejected). `Cancelled` exists but has no cancel API.
+
+**PO:** Draft → PendingApproval → Approved → PartiallyReceived → FullyReceived → Closed (or Rejected). `Cancelled` enum exists without a cancel transition.
+
+**Line types:** `Asset` | `Consumable`.  
+**GST treatment:** `Capitalize` | `InputCredit`.

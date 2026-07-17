@@ -1,0 +1,26 @@
+---
+title: "Sites, locations & departments API"
+description: "Organizational master endpoints."
+---
+
+# Sites, locations & departments API
+
+## Site — `/api/v1/Site`
+
+CRUD, status patch, activity, import template/import, export. Permissions: `sites.*`.
+
+## Site categories — `/api/v1/site-categories`
+
+GET list; POST/PUT/DELETE/merge with `sites.manage_categories`.
+
+## Location — `/api/v1/Location`
+
+CRUD, status, activity, template/import, export. Permissions: `locations.*`.
+
+## Location types — `/api/v1/location-types`
+
+GET; POST/PUT/DELETE/merge with `locations.manage_types`.
+
+## Department — `/api/v1/Department`
+
+CRUD, status, activity, template/import, export. Permissions: `departments.*`.

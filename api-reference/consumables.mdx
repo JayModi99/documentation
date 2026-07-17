@@ -1,0 +1,35 @@
+---
+title: "Consumables API"
+description: "Category, model, UoM, stock, and transaction endpoints."
+---
+
+# Consumables API
+
+## Category — `/api/v1/ConsumableCategory`
+
+GET list/by id; POST create; PUT update; DELETE — permissions `consumables.view/create/edit/delete`.
+
+## Model — `/api/v1/ConsumableModel`
+
+CRUD + status patch + photo upload-urls / photos / set primary.
+
+## UoM — `/api/v1/ConsumableUnitOfMeasure`
+
+Full CRUD.
+
+## Stock — `/api/v1/ConsumableStock`
+
+| GET | `/` | on-hand |
+| GET | `/low-stock` | low stock |
+
+## Transactions — `/api/v1/ConsumableTransaction`
+
+| Method | Path | Permission |
+|--------|------|------------|
+| GET | `/` | view |
+| POST | `/receive` | receive |
+| POST | `/issue` | issue |
+| POST | `/transfer` | transfer |
+| POST | `/adjust` | adjust |
+| POST | `/dispose` | dispose |
+| POST | `/{originalTransactionId}/reverse` | reverse |

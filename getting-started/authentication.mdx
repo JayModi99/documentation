@@ -1,0 +1,53 @@
+---
+title: "Authentication"
+description: "Password auth, refresh tokens, Microsoft Entra SSO, and device JWTs."
+---
+
+# Authentication
+
+AssetMate Pro supports three credential models.
+
+## 1. User password + refresh token
+
+| Endpoint | Purpose |
+|----------|---------|
+| `POST /api/v1/auth/login` | Email/password → access + refresh tokens |
+| `POST /api/v1/auth/refresh-token` | Rotate tokens |
+| `POST /api/v1/auth/logout` | Invalidate refresh token |
+| `POST /api/v1/auth/forgot-password` / `verify-reset-otp` / `reset-password` | OTP reset flow |
+| `POST /api/v1/auth/change-password` | Authenticated change |
+| `POST /api/v1/auth/setup-password` | First-time password for invited/SSO users |
+
+JWT config keys: `Jwt:Key`, `Jwt:Issuer`, `Jwt:Audience`, `Jwt:AccessTokenExpiryMinutes`, `Jwt:RefreshTokenExpiryDays`.
+
+## 2. Microsoft Entra ID (OIDC)
+
+SPA/mobile validate Microsoft `id_token` (no client secret in this flow).
+
+| Endpoint | Auth |
+|----------|------|
+| `GET /api/v1/auth/sso/config` | Anonymous — public SSO availability |
+| `POST /api/v1/auth/sso/begin` | Start challenge (`SsoIntent`: Login, Register, Link, AdminConnect) |
+| `POST /api/v1/auth/sso/callback` | Complete with id_token |
+| `GET /api/v1/auth/sso/status` | Admin — connection status |
+| `DELETE /api/v1/auth/sso/tenant` | Admin — disconnect tenant |
+
+Config: `AzureAd:Authority`, `AzureAd:ClientId`, `AzureAd:RequireAdminConsentForRegister`, `AzureAd:AllowSelfSignup`.
+
+Provisioning modes (`ProvisioningMode`): `InviteOnly`, `Jit`, `OpenSignup`.
+
+## 3. Device JWT (IT Agent)
+
+1. Admin creates org token → `POST /api/v1/agent-tokens` (plaintext returned once; DB stores SHA-256 hash).
+2. Agent enrolls: `POST /api/v1/agent/enroll` with header `X-Org-Token`.
+3. Backend returns device JWT (`role=device`, ~365 days).
+4. Steady-state: `Authorization: Bearer <deviceJwt>` on `/api/v1/agent/*` only (`DeviceJwtScopeMiddleware`).
+
+## Request headers (user APIs)
+
+```http
+Authorization: Bearer eyJhbGciOi...
+Content-Type: application/json
+```
+
+Company scope is embedded in JWT claims — there is no separate `X-Company-Id` header required by the standard controllers.

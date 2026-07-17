@@ -1,0 +1,18 @@
+---
+title: "Ticket lifecycle"
+description: "Create, assign, hold, resolve, close, cancel, reopen."
+---
+
+# Ticket lifecycle
+
+```
+Create ──► Open
+Assign ──► InProgress
+Hold ◄──► Open/InProgress
+Resolve ──► Resolved
+Close ──► Closed
+Cancel ──► Cancelled
+Reopen ──► Open (from Resolved or Closed only)
+```
+
+Terminal for most edits: Closed, Cancelled. Delete blocked if already assigned. New tickets must use an Open-stage status.

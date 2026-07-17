@@ -1,0 +1,11 @@
+---
+title: "Scans API"
+description: "Authenticated resolve and public tag scans."
+---
+
+# Scans API
+
+| Method | Path | Auth |
+|--------|------|------|
+| POST | `/api/v1/scans/resolve` | `assets.view` — body `ScanResolveRequest` |
+| POST | `/api/v1/public/scans` | Anonymous + public-scan rate limit — body `PublicScanRequest` |

@@ -1,0 +1,16 @@
+---
+title: "Notification templates"
+description: "Seeded NotificationTemplate codes and which are actually sent."
+---
+
+# Notification templates
+
+| Code | Sent? |
+|------|-------|
+| `otp_verification` | Yes (`AuthService`) |
+| `password_reset` | Yes |
+| `user_invitation` | Yes (`UserService`) |
+| `welcome` | Seeded only — no caller |
+| `account_locked` | Seeded only — no caller |
+
+`NotificationChannel` enum includes Push/WhatsApp/Sms — **only Email is implemented**.

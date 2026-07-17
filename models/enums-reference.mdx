@@ -1,0 +1,71 @@
+---
+title: "Enums reference"
+description: "Complete AppEnums catalog used across AssetMate Pro."
+---
+
+# Enums reference
+
+Source: `backend/src/AssetMatePro.Core/Enums/AppEnums.cs` (+ consumable enums).
+
+## Subscription & auth
+
+| Enum | Values |
+|------|--------|
+| `SubscriptionStatus` | Trial, Active, Expired, Cancelled, Suspended |
+| `BillingCycle` | Monthly, Yearly |
+| `UserStatus` | Active, Inactive, Locked, PendingVerification |
+| `DeploymentMode` | Cloud, OnPremise |
+| `OtpPurpose` | EmailVerification, PasswordReset |
+| `NotificationChannel` | Email, Push, WhatsApp, Sms *(only Email delivered)* |
+| `ProvisioningMode` | InviteOnly, Jit, OpenSignup |
+| `SsoIntent` | Login, Register, Link, AdminConnect |
+
+## Assets & lifecycle
+
+| Enum | Values |
+|------|--------|
+| `AssetPrimaryStatus` | Available, Assigned, Leased, Reserved, Disposed, Maintenance |
+| `OwnershipMode` | Owned, Leased |
+| `CheckoutAssignmentMode` | User, Location |
+| `AssetActionType` | CheckOut, CheckIn, Transfer, Maintenance, Disposal, StatusChange, Reserve, Lease, LeaseReturn |
+| `ReservationStatus` | Active, Cancelled, Expired, Converted *(Converted unused)* |
+| `ReservationTargetType` | User, Customer, SiteLocation |
+| `MaintenanceWorkOrderStatus` | Open, InProgress, Completed, Cancelled |
+| `MaintenancePriority` | Low, Medium, High, Critical |
+| `MaintenanceRecordType` | Scheduled, Unscheduled, Repair, Upgrade |
+| `MaintenanceCostCategory` | Labor, Parts, Travel, Other |
+| `LeaseType` | FixedTerm, Ongoing |
+| `LeaseStatus` | Active, Closed, Cancelled |
+| `LeaseBillingFrequency` | OneTime, Daily, Weekly, Monthly, Yearly |
+| `LeaseBillingStatus` | Pending, Paid, Overdue, Cancelled |
+| `LeaseReturnCondition` | Good, Damaged |
+| `LeaseSettlementStatus` | Pending, Settled, Waived |
+
+## Finance
+
+| Enum | Values |
+|------|--------|
+| `DepreciationMethod` | SLM, WDV |
+| `DepreciationBasis` | UsefulLife, DepreciationRate |
+| `UsefulLifeUnit` | Days, Months, Years |
+| `SalvageValueType` | FixedAmount, Percentage |
+| `AssetLifeType` | Days, Months, Years |
+| `DepreciationBook` | IA, CA |
+| `IncomeTaxDepreciationRegime` | WdvBlock, PowerSlm, PowerWdvBlock |
+| `PowerUndertakingType` | Generation, GenerationAndDistribution |
+
+## Purchase / partners / tickets / agent
+
+| Enum | Values |
+|------|--------|
+| `PurchaseOrderStatus` | Draft…Closed, Cancelled |
+| `PurchaseRequestStatus` | Draft…Converted, Cancelled |
+| `PurchaseLineItemType` | Asset, Consumable |
+| `PurchaseGstTreatment` | Capitalize, InputCredit |
+| `PartnerType` | Vendor, Customer, Both |
+| `TicketStage` / `TicketStatus` | Open, InProgress, Resolved, Closed, Cancelled, OnHold |
+| `TicketPriority` | Low, Medium, High, Critical |
+| `CustomFieldType` | Text…File (15 values) |
+| `DeviceAgentStatus` | Active, Paused, Error |
+| `AssetScanSource` | MobileApp, PublicUrl, WebApp |
+| `AssetScanOutcome` | Found, NotFound, WrongCompany |

@@ -1,0 +1,20 @@
+---
+title: "Asset kits API"
+description: "AssetKitsController endpoints."
+---
+
+# Asset kits API
+
+Base: `/api/v1/AssetKits`
+
+| Method | Path | Permission |
+|--------|------|------------|
+| GET | `/suggested-code` | Authorize |
+| GET | `/` | `assetkits.view` |
+| GET | `/{id}` | view |
+| GET | `/{id}/activity` | view |
+| POST | `/` | create |
+| PUT | `/{id}` | edit |
+| DELETE | `/{id}` | edit |
+| POST | `/{id}/members` | edit |
+| DELETE | `/{id}/members/{assetId}` | edit |

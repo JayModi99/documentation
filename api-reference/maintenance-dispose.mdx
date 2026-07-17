@@ -1,0 +1,34 @@
+---
+title: "Maintenance & Dispose API"
+description: "Work orders and disposal transactions."
+---
+
+# Maintenance & Dispose API
+
+## Maintenance — `/api/v1/Maintenance`
+
+| Method | Path | Permission |
+|--------|------|------------|
+| GET | `/history` | view |
+| GET | `/{id}` | view |
+| POST | `/` | create |
+| PUT | `/{id}` | edit |
+| POST | `/{id}/complete` | complete |
+| POST | `/{id}/cancel` | edit |
+| POST | `/attachment-upload-urls` | create |
+| POST | `/{id}/attachments` | create |
+| DELETE | `/attachments/{attachmentId}` | create |
+| GET | `/{id}/timeline` | view |
+| GET | `/{id}/activity` | view |
+
+## Dispose — `/api/v1/Dispose`
+
+| Method | Path | Permission |
+|--------|------|------------|
+| GET | `/history` | `assets.dispose` |
+| GET | `/{id}/detail` | dispose |
+| POST | `/` | dispose |
+| POST | `/attachment-upload-urls` | dispose |
+| POST | `/{id}/attachments` | dispose |
+| DELETE | `/attachments/{attachmentId}` | dispose |
+| GET | `/{id}/activity` | dispose |

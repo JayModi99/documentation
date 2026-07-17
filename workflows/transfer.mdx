@@ -1,0 +1,11 @@
+---
+title: "Transfer"
+description: "Move site/location/department without changing PrimaryStatus."
+---
+
+# Transfer
+
+**API:** `POST /api/v1/AssetActions/{assetId}/transfer`  
+Updates site / location / department. **Does not change** `PrimaryStatus`.
+
+Prefer explicit transfers from the asset detail UI with permission `assets.transfer` when exposed through the service layer.

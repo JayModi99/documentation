@@ -1,0 +1,18 @@
+---
+title: "Capabilities matrix"
+description: "What the Flutter app actually depends on."
+---
+
+# Capabilities matrix
+
+| Capability | Present? |
+|------------|----------|
+| Microsoft SSO | Yes (DTOs + UI) |
+| QR scanner + geolocator | Yes |
+| Core asset lifecycle | Yes |
+| Firebase Messaging / push | **No** |
+| PDF generation packages | **No** |
+| Sentry SDK | Commented stub only |
+| Notifications screen | Stub `"Notifications — TODO"` |
+
+Architecture docs that claim `firebase_messaging` / `pdf` / `sentry_flutter` are outdated relative to `pubspec.yaml`.

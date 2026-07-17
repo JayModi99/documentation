@@ -1,0 +1,11 @@
+---
+title: "Org tokens"
+description: "Create and revoke enrollment tokens."
+---
+
+# Org tokens
+
+`/api/v1/agent-tokens`
+
+- Create returns plaintext **once**; DB stores SHA-256 hash + 8-char prefix for display
+- Revoke: `DELETE /{id}` (`agenttokens.revoke`)

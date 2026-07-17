@@ -1,0 +1,66 @@
+---
+title: "Assets API"
+description: "Full AssetsController surface including availability pickers and components."
+---
+
+# Assets API
+
+Base: `/api/v1/Assets` · class `[Authorize]`
+
+## Core CRUD
+
+| Method | Path | Permission |
+|--------|------|------------|
+| GET | `/` | `assets.view` |
+| GET | `/{id}` | `assets.view` |
+| POST | `/` | `assets.create` |
+| PUT | `/{id}` | `assets.edit` |
+| DELETE | `/{id}` | `assets.delete` |
+| GET | `/export` | `assets.export` |
+| GET | `/import/template` | `assets.import` |
+| POST | `/import` | `assets.import` |
+| GET | `/preview-next-tag` | `assets.view` |
+
+## Availability pickers
+
+| Path | Any of |
+|------|--------|
+| `/checkout-available` | Checkout.Create, Assets.View |
+| `/lease-available` | Lease.Create, Assets.View |
+| `/reserve-available` | Reserve.Create, Assets.View |
+| `/reserve-cancel-available` | Reserve.Cancel, Assets.View |
+| `/checkin-available` | Checkin.Create, Assets.View |
+| `/lease-return-available` | Lease.Return, Assets.View |
+| `/maintenance-available` | Maintenance.Create, Assets.View |
+| `/dispose-available` | Assets.Dispose, Assets.View |
+
+## Documents, activity, timeline, scans
+
+| Method | Path | Permission |
+|--------|------|------------|
+| POST | `/documents/upload-urls` | edit |
+| GET/POST | `/{id}/documents` | view / edit |
+| DELETE | `/documents/{docId}` | edit |
+| GET | `/documents/{docId}/url` | view |
+| GET | `/{id}/activity` | view |
+| GET | `/{id}/timeline` | view |
+| GET | `/{id}/scan-history` | view |
+| GET | `/{id}/tag-url` | view |
+
+## Components
+
+| Method | Path |
+|--------|------|
+| GET | `/{id}/components` |
+| GET | `/{id}/component-candidates` |
+| POST | `/{id}/components` |
+| DELETE | `/{parentId}/components/{childId}` |
+| POST | `/component-presence` |
+
+## Asset conditions — `/api/v1/asset-conditions`
+
+CRUD + `/active` list with `RequireAnyPermission` combinations of Assets.View/Edit/ManageConditions and Checkin.Create.
+
+## Legacy AssetActions — `/api/v1/AssetActions`
+
+See [Legacy AssetActions](/workflows/legacy-asset-actions).

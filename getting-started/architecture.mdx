@@ -1,0 +1,56 @@
+---
+title: "Architecture"
+description: "Monorepo layout, API layers, clients, and the Windows agent boundary."
+---
+
+# Architecture
+
+## Monorepo layout
+
+| Path | Role |
+|------|------|
+| `backend/` | .NET 10 Web API — Api / Core / Infrastructure |
+| `frontend/` | Angular dashboard SPA |
+| `mobile/` | Flutter field / scanner app |
+| `windows-agent/` | Windows inventory + command agent (.NET 8 Worker) |
+| `docs-hub/` | This Mintlify documentation site |
+| `docs/` | Internal engineering specs and RFCs |
+
+## Backend layers
+
+```
+AssetMatePro.Api          Controllers, middleware, auth policies, SignalR hubs
+AssetMatePro.Core         Entities, enums, DTOs, interfaces, permission constants
+AssetMatePro.Infrastructure  EF Core, services, background jobs, email, S3, SSO
+AssetMatePro.Infrastructure.Postgres / SqlServer  Provider-specific migrations
+```
+
+## Request pipeline (order)
+
+1. Correlation ID  
+2. Exception handling  
+3. Request logging  
+4. Swagger (dev)  
+5. CORS  
+6. HTTPS (non-dev)  
+7. Authentication (JWT)  
+8. `SecurityVersionMiddleware`  
+9. `DeviceJwtScopeMiddleware` (device JWTs restricted to `/api/v1/agent/*`)  
+10. Authorization + permission policies  
+11. Rate limiting (agent endpoints)  
+12. Controllers / SignalR hubs  
+
+## Multi-tenancy
+
+- **Account** = billing/tenant root (`TenantEntity.AccountId`)
+- **Company** = operating unit; most operational rows carry `CompanyId`
+- Users may belong to multiple companies via `UserCompanyAccess`; active company is selected via JWT claims / `switch-company`
+
+## Clients
+
+| Client | Auth | Primary use |
+|--------|------|-------------|
+| Angular SPA | User JWT (+ Microsoft SSO) | Full admin / ops |
+| Flutter | User JWT (+ Microsoft SSO) | Field ops + scanner |
+| Windows Agent | Org token → device JWT | Inventory sync + remote commands |
+| Public scan | Anonymous + rate limit | Tag URL landings (`TagScan:PublicBaseUrl`) |

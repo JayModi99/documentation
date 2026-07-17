@@ -1,0 +1,16 @@
+---
+title: "Devices dashboard APIs"
+description: "List devices, software, revoke, and delete."
+---
+
+# Devices dashboard APIs
+
+| Method | Path | Permission |
+|--------|------|------------|
+| GET | `/api/v1/devices` | `devices.view` |
+| GET | `/api/v1/devices/{id}` | view |
+| GET | `/api/v1/devices/{id}/software` | view |
+| POST | `/api/v1/devices/{id}/revoke` | `devices.revoke` |
+| DELETE | `/api/v1/devices/{id}` | `devices.delete` |
+
+Angular feature module: `features/devices` (list + detail tabs including Commands).

@@ -1,0 +1,50 @@
+---
+title: "Purchases API"
+description: "PurchaseRequest and PurchaseOrder complete endpoint lists."
+---
+
+# Purchases API
+
+## PurchaseRequest — `/api/v1/PurchaseRequest`
+
+| Method | Path | Permission |
+|--------|------|------------|
+| GET | `/` | view |
+| GET | `/{id}` | view |
+| POST | `/` | create |
+| PUT | `/{id}` | edit |
+| DELETE | `/{id}` | edit |
+| POST | `/{id}/submit` | edit |
+| POST | `/{id}/approve` | approve |
+| POST | `/{id}/reject` | approve |
+| POST | `/{id}/send-back` | approve |
+| POST | `/{id}/convert-to-po` | create |
+| GET | `/{id}/activity` | view |
+| GET | `/export` | view |
+
+## PurchaseOrder — `/api/v1/PurchaseOrder`
+
+| Method | Path | Permission |
+|--------|------|------------|
+| GET | `/` | view |
+| GET | `/{id}` | view |
+| POST | `/` | create |
+| PUT | `/{id}` | edit |
+| DELETE | `/{id}` | edit |
+| GET | `/{id}/attachments` | view |
+| POST | `/{id}/attachments/upload-urls` | edit |
+| POST | `/{id}/attachments` | edit |
+| DELETE | `/attachments/{attachmentId}` | edit |
+| POST | `/{id}/submit` | edit |
+| POST | `/{id}/approve` | approve |
+| POST | `/{id}/reject` | approve |
+| POST | `/{id}/receive` | create |
+| POST | `/{id}/amend` | edit |
+| GET | `/{id}/assets` | view |
+| GET | `/{id}/receipts` | view |
+| GET | `/{id}/activity` | view |
+| PUT | `/{id}/payment` | edit |
+| POST | `/{id}/close` | close |
+| GET | `/settings` | view |
+| PUT | `/settings` | edit |
+| GET | `/export` | view |

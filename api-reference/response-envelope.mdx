@@ -1,0 +1,54 @@
+---
+title: "Response envelope"
+description: "ApiResponse and paged response shapes."
+---
+
+# Response envelope
+
+Source: `AssetMatePro.Core.DTOs.Common.ApiResponse`.
+
+<ResponseField name="success" type="boolean" required>
+  `true` on success; `false` on error.
+</ResponseField>
+<ResponseField name="message" type="string">
+  Human-readable status or error message.
+</ResponseField>
+<ResponseField name="data" type="object">
+  Payload of type `T` (omitted/null when empty).
+</ResponseField>
+<ResponseField name="errors" type="object">
+  Validation or structured error details.
+</ResponseField>
+<ResponseField name="pagination" type="object">
+  Present on paged list responses — see `PaginationMeta` below.
+</ResponseField>
+
+```json
+{
+  "success": true,
+  "message": "OK",
+  "data": {},
+  "errors": null,
+  "pagination": {
+    "page": 1,
+    "pageSize": 25,
+    "totalCount": 100,
+    "totalPages": 4,
+    "hasPrevious": false,
+    "hasNext": true
+  }
+}
+```
+
+### PaginationMeta
+
+| Field | Type |
+|-------|------|
+| `page` | int |
+| `pageSize` | int |
+| `totalCount` | int |
+| `totalPages` | int (computed) |
+| `hasPrevious` | bool |
+| `hasNext` | bool |
+
+File endpoints return binary downloads (exports, templates) without this envelope.

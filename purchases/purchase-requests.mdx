@@ -1,0 +1,37 @@
+---
+title: "Purchase requests"
+description: "PR status machine, line rules, and convert-to-PO."
+---
+
+# Purchase requests
+
+## Status machine
+
+```
+Draft ──submit──► PendingApproval ──approve──► Approved ──convert──► Converted
+  ▲                    │
+  │                    ├─reject──► Rejected
+  │                    └─send back──► Draft
+  └──── edit Approved forces Draft ────┘
+```
+
+`Cancelled` enum exists — **no cancel API**.
+
+## Line rules
+
+≥1 line; qty &gt; 0; est. cost ≥ 0; Asset/Consumable line needs model or description.
+
+## Endpoints
+
+| Method | Path | Permission |
+|--------|------|------------|
+| GET | `/` | View |
+| GET | `/{id}` | View |
+| POST | `/` | Create |
+| PUT | `/{id}` | Edit |
+| DELETE | `/{id}` | Edit (Draft/Rejected, unlinked) |
+| POST | `/{id}/submit` | Edit |
+| POST | `/{id}/approve\|reject\|send-back` | Approve |
+| POST | `/{id}/convert-to-po` | Create |
+| GET | `/{id}/activity` | View |
+| GET | `/export` | View |

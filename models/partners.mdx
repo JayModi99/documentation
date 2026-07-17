@@ -1,0 +1,20 @@
+---
+title: "Partners"
+description: "Vendors and customers used across purchase, lease, dispose, and consumables."
+---
+
+# Partners
+
+`Partner` (`TenantEntity`) with `PartnerType`: `Vendor` | `Customer` | `Both`.
+
+Related:
+
+| Entity | Role |
+|--------|------|
+| `PartnerCategory` | Categorization |
+| `PartnerContact` | Contacts with `PartnerContactRole` |
+| `PartnerDocument` | Uploaded documents via S3 |
+
+API base: `/api/v1/partners` (+ categories, documents, import/export, activity).
+
+Used by: purchase vendors, lease customers, dispose sold-to customer, consumable receive vendor, asset lessor/vendor FKs.

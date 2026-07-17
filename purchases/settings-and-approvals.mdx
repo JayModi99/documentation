@@ -1,0 +1,13 @@
+---
+title: "Purchase settings & approvals"
+description: "Company purchase settings for approval thresholds."
+---
+
+# Purchase settings & approvals
+
+| Method | Path | Permission |
+|--------|------|------------|
+| GET | `/api/v1/PurchaseOrder/settings` | `purchase.view` |
+| PUT | `/api/v1/PurchaseOrder/settings` | `purchase.edit` |
+
+Settings drive whether submit lands in `PendingApproval` or auto-`Approved` (`RequirePoApproval` / amount thresholds on the company).

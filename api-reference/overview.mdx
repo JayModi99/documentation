@@ -1,0 +1,44 @@
+---
+title: "API overview"
+description: "Base URL, versioning, middleware, and module index for ~452 endpoints."
+---
+
+# API overview
+
+| Item | Value |
+|------|-------|
+| Base path | `/api/v1` |
+| Versioning | Hardcoded in routes (no ASP.NET versioning package) |
+| JSON | camelCase; ignore nulls; string enums |
+| Auth | Bearer JWT (user) or device JWT on `/api/v1/agent/*` |
+| Envelope | `ApiResponse<T>` / paged wrappers |
+| Health | `GET /health` |
+| SignalR | `/api/v1/agent/commands-hub` |
+
+Swagger title in Development: **AssetMate Pro API V1**.
+
+## Module index
+
+| Guide | Controllers |
+|-------|-------------|
+| [Auth](/api-reference/auth) | AuthController |
+| [SSO](/api-reference/sso) | SsoController, SsoAdminController |
+| [Users & roles](/api-reference/users-roles) | User, Role, DocumentCategory, UserDocument |
+| [Assets](/api-reference/assets) | Assets, Conditions, AssetActions |
+| [Asset kits](/api-reference/asset-kits) | AssetKits |
+| [Sites & locations](/api-reference/masters-sites-locations) | Site, SiteCategory, Location, LocationType, Department |
+| [Brands & models](/api-reference/masters-brands-models-categories) | Brand, AssetModel, AssetCategory, DepreciationMaster |
+| [Checkout / Check-in](/api-reference/checkout-checkin) | Checkout, CheckIn |
+| [Reserve / Lease](/api-reference/reserve-lease) | Reserve, Lease |
+| [Maintenance / Dispose](/api-reference/maintenance-dispose) | Maintenance, Dispose |
+| [Depreciation](/api-reference/depreciation) | Depreciation |
+| [Purchases](/api-reference/purchases) | PurchaseRequest, PurchaseOrder |
+| [Consumables](/api-reference/consumables) | Category, Model, UoM, Stock, Transaction |
+| [Tickets](/api-reference/tickets) | Ticket |
+| [Ticket masters](/api-reference/ticket-masters) | Category, Priority, Status, Group, Canned, Settings |
+| [Custom fields](/api-reference/custom-fields) | CustomField |
+| [Partners](/api-reference/partners) | Partner |
+| [Dashboard](/api-reference/dashboard) | Dashboard |
+| [Agent & devices](/api-reference/agent-device) | enroll/sync/commands/tokens/versions/devices |
+| [Scans](/api-reference/scans) | AssetScans, PublicScans |
+| [Common & geo](/api-reference/common-master-geo) | Common, Master |

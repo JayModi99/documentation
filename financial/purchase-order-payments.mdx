@@ -1,0 +1,11 @@
+---
+title: "Purchase order payments"
+description: "PO payment updates and close rules for unpaid orders."
+---
+
+# Purchase order payments
+
+- `PUT /api/v1/PurchaseOrder/{id}/payment` — `UpdatePurchaseOrderPaymentRequest`
+- `POST /api/v1/PurchaseOrder/{id}/close` — FullyReceived required; unpaid needs `ForceCloseUnpaid`
+
+There is **no** Razorpay/Stripe gateway integration — payment fields are domain data only.

@@ -1,0 +1,23 @@
+---
+title: "Custom fields API"
+description: "Definition CRUD, for-form, sort order, usage report."
+---
+
+# Custom fields API
+
+Base: `/api/v1/CustomField`
+
+| Method | Path | Permission |
+|--------|------|------------|
+| GET | `/for-form` | any authenticated |
+| GET | `/module-summaries` | view |
+| GET | `/` | view |
+| GET | `/usage-report` | view |
+| GET | `/export` | export |
+| GET | `/{id}` | view |
+| GET | `/{id}/activity` | view |
+| POST | `/` | create |
+| PUT | `/{id}` | edit |
+| PUT | `/sort-order` | edit |
+| PATCH | `/{id}/status` | edit |
+| DELETE | `/{id}?forceArchive=` | delete |

@@ -1,0 +1,27 @@
+---
+title: "Check-in"
+description: "Return assigned assets to Available with condition and return site."
+---
+
+# Check-in
+
+**API:** `POST /api/v1/CheckIn` · Permission: `checkin.create`  
+**Legacy:** `POST /api/v1/AssetActions/{id}/checkin` → **410 Gone**
+
+## Transition
+
+`Assigned` → `Available`
+
+## Steps
+
+<Steps>
+  <Step title="Select assigned assets">
+    `GET /api/v1/Assets/checkin-available`. Whole assembly must all be Assigned.
+  </Step>
+  <Step title="Require condition + return placement">
+    Active `AssetCondition`, return site, return location (location must belong to site); optional department.
+  </Step>
+  <Step title="Persist">
+    `CheckInTransaction`, `AssetAction` (`CheckIn`), clear `AssignedToUserId`, set site/location/department/condition, `PrimaryStatus=Available`, custom fields form `Checkin`.
+  </Step>
+</Steps>

@@ -1,0 +1,14 @@
+---
+title: "Tickets overview"
+description: "Helpdesk module with configurable masters and stage-driven workflow."
+---
+
+# Tickets overview
+
+Tickets use configurable labels backed by fixed `TicketStage` values. Lists:
+
+- All: `GET /api/v1/Ticket` (`tickets.view_all`)
+- Mine: `GET /api/v1/Ticket/my`
+- Assigned: `GET /api/v1/Ticket/assigned`
+
+Exports mirror those scopes.

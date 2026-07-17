@@ -1,0 +1,12 @@
+---
+title: "Asset cost fields"
+description: "Purchase cost, put-to-use, vendor/PO/invoice, and opening accum. dep."
+---
+
+# Asset cost fields
+
+See [Asset entity](/models/asset) for the full `ResponseField` map. Operational rules:
+
+- If `IsDepreciationEnabled` and `PutToUseDate` is null → **CWIP** (no schedule rows)
+- `PurchaseCost` / `PurchaseDate` required when depreciation enabled
+- Opening accum. dep. cannot exceed cost − salvage (enforced in `DepreciationService`)

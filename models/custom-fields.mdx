@@ -1,0 +1,23 @@
+---
+title: "Custom field entities"
+description: "CustomField, options, category scope, and stored values."
+---
+
+# Custom field entities
+
+| Entity | Purpose |
+|--------|---------|
+| `CustomField` | Definition (label, key, type, form, required, show flags) |
+| `CustomFieldOption` | Options for dropdown/radio/multiselect |
+| `CustomFieldCategory` | Category scope join (Assets form `Limited` scope) |
+| `CustomFieldValue` | Values keyed by `(EntityType=FormName, EntityId)` |
+
+## Field types (`CustomFieldType`)
+
+`Text`, `Numeric`, `DropDown`, `RadioButton`, `DatePicker`, `TextArea`, `Checkbox`, `Currency`, `DateTime`, `MultiSelect`, `Url`, `Email`, `Phone`, `User`, `File`.
+
+## Immutability after create
+
+`FormName`, `FieldType`, and `FieldKey` cannot change after creation. `FieldKey` must match `^[a-z][a-z0-9_]*$`.
+
+See [Custom fields guides](/custom-fields/overview).

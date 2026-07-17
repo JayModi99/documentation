@@ -1,0 +1,11 @@
+---
+title: "Lease billing overdue job"
+description: "Marks pending lease billing records overdue."
+---
+
+# Lease billing overdue job
+
+`LeaseBillingOverdueBackgroundService`  
+Config: `Lease:BillingOverdue:Enabled`, `IntervalMinutes` (default **60**).
+
+Also: `LeaseStatusReconciliationService` runs **once at startup** to close fully-returned leases.

@@ -1,0 +1,21 @@
+---
+title: "Errors & status codes"
+description: "Common HTTP statuses and validation filter behavior."
+---
+
+# Errors & status codes
+
+| Code | When |
+|------|------|
+| 200 | Success |
+| 201 | Created (`CreatedResponse`) |
+| 400 | Validation / business rule (`ValidationFilter` + service exceptions) |
+| 401 | Missing/invalid JWT |
+| 403 | Permission denied |
+| 404 | Entity not found |
+| 409 | Conflict (e.g. concurrency) |
+| 410 | Gone — deprecated check-in on AssetActions |
+| 413 | Agent payload too large |
+| 429 | Agent rate limit |
+
+Exception middleware maps domain errors into the standard envelope.

@@ -1,0 +1,61 @@
+---
+title: "Checkout"
+description: "Assign assets to a user or location with kit/assembly and reservation rules."
+---
+
+# Checkout
+
+**API:** `POST /api/v1/Checkout` · Permission: `checkout.create`
+
+## Transitions
+
+| From | To | Condition |
+|------|-----|-----------|
+| Available | Assigned | User or Location mode |
+| Reserved | Assigned | **User mode only**; assignee must equal `ReservedForUserId` |
+
+Location-mode checkout from Reserved is blocked.
+
+## Steps
+
+<Steps>
+  <Step title="Select eligible assets">
+    Use `GET /api/v1/Assets/checkout-available`. Whole kits must be included; assemblies must all be `Available`.
+  </Step>
+  <Step title="Choose assignment mode">
+    `CheckoutAssignmentMode.User` requires assignee (company member). `Location` requires site + location; no acknowledgement email.
+  </Step>
+  <Step title="Validate org targets">
+    Optional site/location/department must be physically consistent.
+  </Step>
+  <Step title="Persist">
+    Creates `CheckoutTransaction` (+ attachments), per-asset `AssetAction` (`CheckOut`), sets `PrimaryStatus=Assigned`, assignee/site/location/expected return, custom fields form `Checkout`.
+  </Step>
+</Steps>
+
+## Validations
+
+- Expected return ≥ checkout date
+- Reserved for another user → blocked
+- Kit and assembly completeness rules
+
+## Acknowledgements
+
+`POST /api/v1/Checkout/acknowledgement-email` sends HTML email (SMTP) for user checkouts.
+
+<Tabs>
+  <Tab title="Web Dashboard Guide">
+    Open **Checkout**, pick assets from the available list, choose User or Location, attach files if needed, submit. History under Checkout history.
+  </Tab>
+  <Tab title="Mobile/Scanner App Guide">
+    Scan or open asset → Checkout action when status allows → select assignee/location → confirm.
+  </Tab>
+  <Tab title="API/CLI Method">
+    ```bash
+    curl -X POST "$API/api/v1/Checkout" \
+      -H "Authorization: Bearer $TOKEN" \
+      -H "Content-Type: application/json" \
+      -d '{"assetIds":["…"],"assignmentMode":"User","assignedToUserId":"…","checkoutDate":"2026-07-16"}'
+    ```
+  </Tab>
+</Tabs>

@@ -1,0 +1,35 @@
+---
+title: "Ticket masters API"
+description: "Categories, priorities, statuses, groups, canned responses, settings."
+---
+
+# Ticket masters API
+
+Shared shape for Category / Priority / Status / AgentGroup:
+
+| Method | Path |
+|--------|------|
+| GET | `/` (paged) |
+| GET | `/all` |
+| GET | `/{id}` |
+| POST | `/` |
+| PUT | `/{id}` |
+| PATCH | `/{id}/toggle-status` or `toggle-active` |
+| PATCH | `/{id}/set-default` |
+| DELETE | `/{id}` |
+
+Bases:
+
+- `/api/v1/TicketCategory`
+- `/api/v1/TicketPriority`
+- `/api/v1/TicketStatus`
+- `/api/v1/TicketAgentGroup`
+
+## Canned responses — `/api/v1/TicketCannedResponse`
+
+Paged, all, get, create, update, toggle-active, delete (no set-default).
+
+## Settings — `/api/v1/TicketSettings`
+
+| GET | `/number-format` |
+| PUT | `/number-format` |

@@ -1,0 +1,29 @@
+---
+title: "Dispose"
+description: "Terminal disposal with depreciation lock checks and kit/assembly detach."
+---
+
+# Dispose
+
+**API:** `POST /api/v1/Dispose` · Permission: `assets.dispose`
+
+## Eligibility (all required)
+
+- `PrimaryStatus == Available`
+- `!InMaintenance`
+- Not a component
+- No child components
+
+## Types
+
+Written Off | Sold | Donated | Scrapped  
+Sold requires customer; disposal date not future; value ≥ 0 per asset.
+
+## Side effects
+
+1. Block if dispose date ≤ locked IA/CA depreciation period  
+2. Create `DisposeTransaction` + `AssetAction` (`Disposal`)  
+3. `PrimaryStatus=Disposed`, set disposal fields  
+4. Detach kit membership / assembly parent  
+5. Regenerate depreciation schedule ending on disposal date  
+6. Custom fields form `Dispose`

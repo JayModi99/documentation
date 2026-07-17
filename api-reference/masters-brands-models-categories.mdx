@@ -1,0 +1,28 @@
+---
+title: "Brands, models & categories API"
+description: "Classification masters and statutory depreciation masters."
+---
+
+# Brands, models & categories API
+
+## Brand — `/api/v1/Brand`
+
+Paged CRUD, status, activity, template/import, export.
+
+## AssetModel — `/api/v1/AssetModel`
+
+Paged CRUD, status, activity, template/import, export.
+
+## AssetCategory — `/api/v1/AssetCategory`
+
+Paged CRUD, status, activity, import/export. Some create/edit/delete checks run in-method via `HasCategoryPermission`.
+
+## DepreciationMaster — `/api/v1/DepreciationMaster`
+
+| GET | Path |
+|-----|------|
+| income-tax | `/income-tax` |
+| income-tax-power | `/income-tax-power` |
+| companies-act | `/companies-act` |
+
+Permission: `categories.view`.
