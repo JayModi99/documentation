@@ -1,0 +1,10 @@
+---
+title: "Reserve expiration job"
+description: "Expires overdue reservations on an interval."
+---
+
+# Reserve expiration job
+
+`ReserveExpirationBackgroundService`  
+Config: `Reserve:Expiration:Enabled`, `IntervalMinutes` (default **15**).  
+Also triggerable: `POST /api/v1/Reserve/expire-overdue` (`reserve.cancel`).

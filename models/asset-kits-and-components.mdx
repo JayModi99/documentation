@@ -1,0 +1,39 @@
+---
+title: "Asset kits & components"
+description: "Kit membership and parent/child assembly relationships."
+---
+
+# Asset kits & components
+
+## AssetKit (`TenantEntity`)
+
+Named kit with a code; members are assets pointing via `Asset.AssetKitId`.
+
+API: `/api/v1/AssetKits`
+
+| Method | Path | Permission |
+|--------|------|------------|
+| GET | `/suggested-code` | Authorize |
+| GET/POST | `/` | View / Create |
+| GET/PUT/DELETE | `/{id}` | View / Edit |
+| POST | `/{id}/members` | Edit |
+| DELETE | `/{id}/members/{assetId}` | Edit |
+
+## Components (assemblies)
+
+Parent/child via `Asset.ParentAssetId`, `IsComponent`, `ComponentOrder`.
+
+| Method | Path |
+|--------|------|
+| GET | `/api/v1/Assets/{id}/components` |
+| GET | `/api/v1/Assets/{id}/component-candidates` |
+| POST | `/api/v1/Assets/{id}/components` |
+| DELETE | `/api/v1/Assets/{parentId}/components/{childId}` |
+| POST | `/api/v1/Assets/component-presence` |
+
+`AssetComponentRelation`: `Parent` | `Child`.
+
+### Lifecycle impact
+
+- Checkout requires whole kit / whole assembly available together.
+- Dispose blocks components and parents that still have children.

@@ -1,0 +1,31 @@
+---
+title: "Device & agent entities"
+description: "Device inventory tables, commands, org tokens, and agent versions."
+---
+
+# Device & agent entities
+
+## Device (`TenantEntity`)
+
+Hybrid schema: promoted scalar columns for list queries + `Payload` JSON blob for full hardware detail. Optional `AssetId` FK (`OnDelete Restrict`). Includes `OsFamily`, `UnmanagedOsDetected`, `RowVersion`.
+
+## Child / related tables
+
+| Entity | Purpose |
+|--------|---------|
+| `DeviceOrgToken` | Hashed org enrollment tokens |
+| `DeviceEnrollment` | Enrollment audit outcomes |
+| `DeviceRevokedToken` | Revoked device JWTs |
+| `DeviceSoftware` | Installed software (replace-all on delta) |
+| `DeviceAntivirusProduct` | Normalized AV list |
+| `DeviceInstalledPatch` | KB patches |
+| `DeviceChangeLog` | Field-level change history |
+| `DevicePerformanceSnapshot` | Perf samples (purged after retention) |
+| `DeviceCommand` | Remote command queue with lease/ack/result |
+| `AgentVersion` | Global MSI catalog (not tenant-scoped) |
+
+## Device enums
+
+- `DeviceAgentStatus`: Active, Paused, Error  
+- `DeviceEnrollmentOutcome`: Success, TokenExpired, TokenRevoked, TokenNotFound, OverCap, NoAssetMatch, Duplicate  
+- `DeviceSoftwareFlaggedStatus`: Ok, Monitored, Blocked  

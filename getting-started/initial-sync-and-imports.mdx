@@ -1,0 +1,38 @@
+---
+title: "Initial sync & imports"
+description: "Bulk import templates for users, assets, masters, and agent enrollment for devices."
+---
+
+# Initial sync & imports
+
+## Spreadsheet imports
+
+Most masters expose:
+
+1. `GET …/import/template` or `GET …/template` — download Excel/CSV template  
+2. `POST …/import` — multipart `IFormFile`  
+3. `GET …/export` — filtered export  
+
+| Resource | Template | Import | Export |
+|----------|----------|--------|--------|
+| Users | `/api/v1/User/import/template` | `POST /api/v1/User/import` | `GET /api/v1/User/export` |
+| Assets | `/api/v1/Assets/import/template` | `POST /api/v1/Assets/import` | `GET /api/v1/Assets/export` |
+| Sites | `/api/v1/Site/import/template` | `POST /api/v1/Site/import` | `GET /api/v1/Site/export` |
+| Locations | `/api/v1/Location/template` | `POST /api/v1/Location/import` | `GET /api/v1/Location/export` |
+| Brands | `/api/v1/Brand/template` | `POST /api/v1/Brand/import` | `GET /api/v1/Brand/export` |
+| Models | `/api/v1/AssetModel/template` | `POST /api/v1/AssetModel/import` | `GET /api/v1/AssetModel/export` |
+| Categories | `/api/v1/AssetCategory/import/template` | `POST /api/v1/AssetCategory/import` | `GET /api/v1/AssetCategory/export` |
+| Departments | `/api/v1/Department/template` | `POST /api/v1/Department/import` | `GET /api/v1/Department/export` |
+| Partners | `/api/v1/partners/import/template` | `POST /api/v1/partners/import` | `GET /api/v1/partners/export` |
+| Custom fields | — | — | `GET /api/v1/CustomField/export` |
+
+## Device agent initial sync
+
+After MSI/org-token install:
+
+1. Agent collects first payload (`schema_version: 2`)
+2. `POST /api/v1/agent/enroll` with `X-Org-Token`
+3. Same payload immediately posted as first `POST /api/v1/agent/sync`
+4. Dashboard devices list populates under `/api/v1/devices`
+
+See [Enrollment](/agent/enrollment) and [Payload schema v2](/agent/payload-schema-v2).

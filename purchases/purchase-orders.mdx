@@ -1,0 +1,28 @@
+---
+title: "Purchase orders"
+description: "PO approval, amend, receive, payment, and close."
+---
+
+# Purchase orders
+
+## Status machine
+
+```
+Draft/Rejected ──submit──► PendingApproval OR Approved*
+                              │
+                         approve / reject
+                              │
+                           Approved
+                      ╱               ╲
+                 receive              amend (zero receipts)
+                      ╲               ╱
+                 PartiallyReceived
+                      │
+                 FullyReceived ──close──► Closed
+```
+
+\*Submit may skip to Approved when company approval settings allow.
+
+## Key endpoints
+
+Submit, approve, reject, receive, amend, payment, close, attachments, receipts, assets, activity, export, settings — see [API: Purchases](/api-reference/purchases).

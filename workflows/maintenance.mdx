@@ -1,0 +1,28 @@
+---
+title: "Maintenance work orders"
+description: "Open, progress, complete, and cancel maintenance WOs without flipping PrimaryStatus."
+---
+
+# Maintenance work orders
+
+**API:** `/api/v1/Maintenance`
+
+## Work order status machine
+
+```
+Open → InProgress → Completed
+  ↓         ↓
+Cancelled  Cancelled
+```
+
+- Cannot move `InProgress` → `Open`
+- Complete / cancel only via dedicated endpoints
+- Cannot edit after Completed/Cancelled
+
+## Asset effect
+
+Sets `InMaintenance=true` / `MaintenanceSince` while any Open/InProgress WO exists. Logs `AssetAction` (`Maintenance`) with StatusBefore = StatusAfter (primary unchanged).
+
+## Eligibility
+
+Not Disposed, not already `InMaintenance`, and not `PrimaryStatus.Maintenance`.

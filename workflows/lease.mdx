@@ -1,0 +1,26 @@
+---
+title: "Lease & lease return"
+description: "Operational lease-out, billing records, and returns."
+---
+
+# Lease & lease return
+
+**API:** `/api/v1/Lease` · Permissions: `lease.create`, `lease.view`, `lease.return`, `lease.manage_billing`
+
+## Create
+
+Assets must be `Available` → become `Leased`. Target: user **or** customer. Fixed-term requires end ≥ start. Amount/deposit/billing period ≥ 0; billing day rules for weekly (1–7) / monthly (1–31).
+
+`LeaseStatus`: Active on create; Closed when all assets returned.
+
+## Return
+
+`POST /api/v1/Lease/return` — assets on same active lease; return date not future; return site + condition required. Assets `Leased` → `Available`.
+
+## Billing
+
+`LeaseBillingRecord` statuses: Pending → Paid / Overdue / Cancelled.  
+Background: `LeaseBillingOverdueBackgroundService` (default 60 min).  
+Update: `PATCH /api/v1/Lease/billing/{id}/status`.
+
+Also: `LeaseStatusReconciliationService` runs at startup to close leases whose assets are all returned.

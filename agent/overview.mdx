@@ -1,0 +1,15 @@
+---
+title: "IT Device Agent overview"
+description: "Windows-only inventory agent with enrollment, sync, commands, and auto-update."
+---
+
+# IT Device Agent overview
+
+Phase 1 is **Windows only**. The agent is a .NET 8 Worker Service that:
+
+1. Enrolls with an org token
+2. Syncs inventory (`schema_version: 2`)
+3. Receives remote commands via SignalR + REST claim/ack/result
+4. Auto-updates from promoted MSI versions
+
+macOS/Linux agents and MDM connectors are **not shipped**.

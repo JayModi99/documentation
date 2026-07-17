@@ -1,0 +1,18 @@
+---
+title: "Sync protocol"
+description: "full, delta, and heartbeat syncs with rate limits and JWT renewal."
+---
+
+# Sync protocol
+
+`POST /api/v1/agent/sync` · DeviceOnly · 60 syncs/hour/JWT · 1 MB payload cap
+
+| sync_type | Contents |
+|-----------|----------|
+| full | Envelope + all data categories |
+| delta | Envelope + changed categories only |
+| heartbeat | Envelope only |
+
+Defense: own-data fence (`device_id` == JWT `sub`), cert pinning on agent, 401 clears config and stops loop.
+
+JWT renewal: response may include `new_jwt` when &lt;30 days remain.

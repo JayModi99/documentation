@@ -1,0 +1,34 @@
+---
+title: "Reserve"
+description: "Hold Available assets for a user, customer, or site/location with expiration."
+---
+
+# Reserve
+
+**API:** `POST /api/v1/Reserve` (bulk create) · Permission: `reserve.create`  
+**Background:** `ReserveExpirationBackgroundService` (default every 15 minutes) calls expire-overdue logic.
+
+## ReservationStatus
+
+| Status | When |
+|--------|------|
+| Active | On create |
+| Cancelled | Manual cancel (batch or assets) |
+| Expired | `ReserveUntil < now` via job / `POST …/expire-overdue` |
+| Converted | **Defined but never written in code** |
+
+## Asset transition
+
+`Available` → `Reserved` on create (not while `InMaintenance`).  
+`Reserved` → `Available` on cancel line or expire.
+
+## Targets (`ReservationTargetType`)
+
+User | Customer | SiteLocation — required IDs per type. Dates: until > from; until not in past.
+
+## Cancel APIs
+
+- `POST /api/v1/Reserve/batch/{batchId}/cancel`
+- `POST /api/v1/Reserve/batch/{batchId}/cancel-assets`
+- `POST /api/v1/Reserve/bulk-cancel`
+- `POST /api/v1/Reserve/bulk-cancel-batches`

@@ -1,0 +1,42 @@
+---
+title: "Base entities & tenancy"
+description: "BaseEntity, AuditableEntity, TenantEntity field definitions."
+---
+
+# Base entities & tenancy
+
+## BaseEntity
+
+<ResponseField name="Id" type="uuid" required>
+  Primary key. Defaults to `Guid.NewGuid()`.
+</ResponseField>
+<ResponseField name="CreatedAt" type="datetime" required>
+  UTC creation timestamp.
+</ResponseField>
+<ResponseField name="UpdatedAt" type="datetime">
+  UTC last update; null until first update.
+</ResponseField>
+<ResponseField name="IsDeleted" type="boolean" required>
+  Soft-delete flag. Global EF filter excludes `true` rows. Default `false`.
+</ResponseField>
+
+## AuditableEntity
+
+Extends `BaseEntity`.
+
+<ResponseField name="CreatedBy" type="uuid">
+  User id who created the row (set in `SaveChangesAsync`).
+</ResponseField>
+<ResponseField name="UpdatedBy" type="uuid">
+  User id who last updated the row.
+</ResponseField>
+
+## TenantEntity
+
+Extends `AuditableEntity`.
+
+<ResponseField name="AccountId" type="uuid" required>
+  Account (tenant) isolation key.
+</ResponseField>
+
+Most operational tables **also** declare an explicit `CompanyId` FK for company-scoped queries.

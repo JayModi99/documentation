@@ -1,0 +1,12 @@
+---
+title: "Agent auto-update"
+description: "MSI version catalog, promote/pause/resume, and update info endpoint."
+---
+
+# Agent auto-update
+
+Admin (`agentversions.manage`): `/api/v1/agent-versions` — upload-url, create, list, promote, pause, resume, delete.
+
+Agent: `GET /api/v1/agent/updates/{version}` (DeviceOnly).
+
+`AgentVersion.RolloutState` drives visibility. Files stored via S3; SHA-256 recorded.

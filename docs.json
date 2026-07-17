@@ -1,68 +1,211 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "AssetMate Pro",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#0B6E4F",
+    "light": "#1B9B6F",
+    "dark": "#084C37"
   },
   "favicon": "/favicon.svg",
+  "logo": {
+    "dark": "/logo/dark.svg",
+    "light": "/logo/light.svg"
+  },
   "navigation": {
     "tabs": [
       {
         "tab": "Guides",
         "groups": [
           {
-            "group": "Getting started",
+            "group": "Getting Started",
             "pages": [
-              "index",
-              "quickstart",
-              "development"
+              "introduction",
+              "getting-started/quickstart",
+              "getting-started/mcp-test",
+              "getting-started/architecture",
+              "getting-started/tenancy-and-companies",
+              "getting-started/authentication",
+              "getting-started/permissions",
+              "getting-started/environments-and-deployment",
+              "getting-started/database-migrations",
+              "getting-started/initial-sync-and-imports"
             ]
           },
           {
-            "group": "Customization",
+            "group": "Core Data Models",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
+              "models/overview",
+              "models/base-and-tenancy",
+              "models/asset",
+              "models/asset-category-model-brand",
+              "models/sites-locations-departments",
+              "models/asset-kits-and-components",
+              "models/partners",
+              "models/users-roles-documents",
+              "models/custom-fields",
+              "models/tickets",
+              "models/purchases",
+              "models/consumables",
+              "models/devices-and-agent",
+              "models/depreciation",
+              "models/enums-reference"
             ]
           },
           {
-            "group": "Writing content",
+            "group": "Asset Lifecycle Workflows",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
+              "workflows/overview",
+              "workflows/primary-status-machine",
+              "workflows/checkout",
+              "workflows/check-in",
+              "workflows/reserve",
+              "workflows/lease",
+              "workflows/maintenance",
+              "workflows/dispose",
+              "workflows/transfer",
+              "workflows/scans-and-tags",
+              "workflows/legacy-asset-actions"
             ]
           },
           {
-            "group": "AI tools",
+            "group": "Cost, Depreciation & Finance",
             "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
+              "financial/overview",
+              "financial/asset-cost-fields",
+              "financial/ia-companies-act-books",
+              "financial/schedule-generation",
+              "financial/period-locks",
+              "financial/power-slm-regime",
+              "financial/compliance-reports",
+              "financial/lease-billing",
+              "financial/maintenance-costs",
+              "financial/purchase-order-payments"
+            ]
+          },
+          {
+            "group": "Purchase & Procurement",
+            "pages": [
+              "purchases/overview",
+              "purchases/purchase-requests",
+              "purchases/purchase-orders",
+              "purchases/receiving-assets-and-stock",
+              "purchases/settings-and-approvals"
+            ]
+          },
+          {
+            "group": "Consumables Inventory",
+            "pages": [
+              "consumables/overview",
+              "consumables/models-and-uom",
+              "consumables/stock-balances",
+              "consumables/transactions"
+            ]
+          },
+          {
+            "group": "Tickets & Helpdesk",
+            "pages": [
+              "tickets/overview",
+              "tickets/lifecycle",
+              "tickets/masters-status-priority-category",
+              "tickets/agent-groups",
+              "tickets/canned-responses",
+              "tickets/number-format-settings",
+              "tickets/sla-and-comments"
+            ]
+          },
+          {
+            "group": "Custom Fields",
+            "pages": [
+              "custom-fields/overview",
+              "custom-fields/field-types",
+              "custom-fields/form-modules",
+              "custom-fields/validation-and-storage"
+            ]
+          },
+          {
+            "group": "Mobile & Scanner",
+            "pages": [
+              "mobile/overview",
+              "mobile/scanner-flows",
+              "mobile/capabilities-matrix"
             ]
           }
         ]
       },
       {
-        "tab": "API reference",
+        "tab": "API Reference",
         "groups": [
           {
-            "group": "API documentation",
+            "group": "API Reference",
             "pages": [
-              "api-reference/introduction"
+              "api-reference/overview",
+              "api-reference/authentication",
+              "api-reference/response-envelope",
+              "api-reference/errors-and-status-codes",
+              "api-reference/auth",
+              "api-reference/sso",
+              "api-reference/users-roles",
+              "api-reference/assets",
+              "api-reference/asset-kits",
+              "api-reference/masters-sites-locations",
+              "api-reference/masters-brands-models-categories",
+              "api-reference/checkout-checkin",
+              "api-reference/reserve-lease",
+              "api-reference/maintenance-dispose",
+              "api-reference/depreciation",
+              "api-reference/purchases",
+              "api-reference/consumables",
+              "api-reference/tickets",
+              "api-reference/ticket-masters",
+              "api-reference/custom-fields",
+              "api-reference/partners",
+              "api-reference/dashboard",
+              "api-reference/agent-device",
+              "api-reference/scans",
+              "api-reference/common-master-geo"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Agent & Integrations",
+        "groups": [
+          {
+            "group": "IT Device Agent",
+            "pages": [
+              "agent/overview",
+              "agent/enrollment",
+              "agent/sync-protocol",
+              "agent/payload-schema-v2",
+              "agent/remote-commands",
+              "agent/auto-update",
+              "agent/org-tokens",
+              "agent/dashboard-devices"
             ]
           },
           {
-            "group": "Endpoint examples",
+            "group": "Alerts, Jobs & Notifications",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "jobs/overview",
+              "jobs/email-pipeline",
+              "jobs/reserve-expiration",
+              "jobs/lease-billing-overdue",
+              "jobs/device-retention-jobs",
+              "jobs/notification-templates",
+              "jobs/what-is-not-implemented"
+            ]
+          },
+          {
+            "group": "Integrations",
+            "pages": [
+              "integrations/overview",
+              "integrations/microsoft-entra-sso",
+              "integrations/smtp-email",
+              "integrations/aws-s3-storage",
+              "integrations/public-tag-scan",
+              "integrations/signalr-agent-hub",
+              "integrations/roadmap-not-shipped"
             ]
           }
         ]
@@ -71,128 +214,47 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
+          "anchor": "OpenAPI / Swagger",
+          "href": "https://api.assetmatepro.com/swagger",
+          "icon": "square-terminal"
         },
         {
-          "anchor": "Community",
-          "href": "https://mintlify.com/community",
-          "icon": "slack"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
+          "anchor": "GitHub",
+          "href": "https://github.com/assetmatepro/assetmate-pro",
+          "icon": "github"
         }
       ]
-    },
-    "dropdowns": [
-      {
-        "dropdown": "Untitled Dropdown",
-        "tabs": [
-          {
-            "tab": "Guides",
-            "groups": [
-              {
-                "group": "Getting started",
-                "pages": [
-                  "index",
-                  "quickstart",
-                  "development"
-                ]
-              },
-              {
-                "group": "Customization",
-                "pages": [
-                  "essentials/settings",
-                  "essentials/navigation"
-                ]
-              },
-              {
-                "group": "Writing content",
-                "pages": [
-                  "essentials/markdown",
-                  "essentials/code",
-                  "essentials/images",
-                  "essentials/reusable-snippets"
-                ]
-              },
-              {
-                "group": "AI tools",
-                "pages": [
-                  "ai-tools/cursor",
-                  "ai-tools/claude-code",
-                  "ai-tools/windsurf"
-                ]
-              }
-            ]
-          },
-          {
-            "tab": "API reference",
-            "groups": [
-              {
-                "group": "API documentation",
-                "pages": [
-                  "api-reference/introduction"
-                ]
-              },
-              {
-                "group": "Endpoint examples",
-                "pages": [
-                  "api-reference/endpoint/get",
-                  "api-reference/endpoint/create",
-                  "api-reference/endpoint/delete",
-                  "api-reference/endpoint/webhook"
-                ]
-              }
-            ]
-          },
-          {
-            "tab": "Test",
-            "pages": [
-              "mcp-test",
-              "test"
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    }
   },
   "navbar": {
     "links": [
       {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "label": "App",
+        "href": "https://app.assetmatepro.com"
+      },
+      {
+        "label": "Status",
+        "href": "https://status.assetmatepro.com"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "Open Dashboard",
+      "href": "https://app.assetmatepro.com"
     }
-  },
-  "contextual": {
-    "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "linkedin": "https://www.linkedin.com/company/assetmatepro",
+      "github": "https://github.com/assetmatepro"
+    }
+  },
+  "api": {
+    "mdx": {
+      "server": "https://api.assetmatepro.com",
+      "auth": {
+        "method": "bearer"
+      }
     }
   }
 }

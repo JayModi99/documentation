@@ -1,0 +1,16 @@
+---
+title: "IA & Companies Act books"
+description: "Independent schedules per DepreciationBook."
+---
+
+# IA & Companies Act books
+
+| Book | Typical method |
+|------|----------------|
+| IA | Block WDV (statutory rate); or Power SLM if company regime is `PowerSlm` |
+| CA | Company/site method — SLM or WDV |
+
+Schedules are independent per asset per book. Snapshot APIs:
+
+- `GET /api/v1/Depreciation/{assetId}/snapshot?book=&asOfDate=`
+- `GET /api/v1/Depreciation/{assetId}/dual-snapshot`

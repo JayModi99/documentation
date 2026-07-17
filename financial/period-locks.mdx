@@ -1,0 +1,17 @@
+---
+title: "FY & month locks"
+description: "Lock and unlock depreciation periods to protect closed books."
+---
+
+# FY & month locks
+
+| Endpoint | Permission |
+|----------|------------|
+| `GET /fy-locks` | `depreciation.view` |
+| `GET /fy-locks/{fyStartYear}/months?book=` | view |
+| `POST /fy-locks/lock-fy` | `depreciation.lock_fy` |
+| `POST /fy-locks/unlock-fy` | `depreciation.unlock_fy` |
+| `POST /fy-locks/lock-month` | lock_fy |
+| `POST /fy-locks/unlock-month` | unlock_fy |
+
+Dispose is blocked into locked IA/CA periods.

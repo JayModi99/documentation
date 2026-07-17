@@ -1,0 +1,18 @@
+---
+title: "Power SLM regime"
+description: "IncomeTaxDepreciationRegime for power undertakings (Appendix IA)."
+---
+
+# Power SLM regime
+
+Company tax settings (`GET/PUT /api/v1/Depreciation/tax-settings`):
+
+| Regime | Meaning |
+|--------|---------|
+| `WdvBlock` | Default Appendix I WDV blocks |
+| `PowerSlm` | Appendix IA SLM on actual cost (Rule 5(1A)) |
+| `PowerWdvBlock` | Power undertaking opted into WDV blocks (irreversible) |
+
+`PowerUndertakingType`: Generation | GenerationAndDistribution.
+
+Masters: `GET /api/v1/DepreciationMaster/income-tax-power`.

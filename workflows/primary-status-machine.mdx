@@ -1,0 +1,38 @@
+---
+title: "Primary status state machine"
+description: "AssetPrimaryStatus transitions and the InMaintenance overlay flag."
+---
+
+# Primary status state machine
+
+## States
+
+| Status | Meaning |
+|--------|---------|
+| `Available` | In stock; eligible for checkout / lease / reserve / dispose |
+| `Assigned` | Checked out to user or location |
+| `Leased` | On active operational lease-out |
+| `Reserved` | Held by active reservation |
+| `Disposed` | Terminal for operations |
+| `Maintenance` | Enum exists; **current WO flow does not set this** |
+
+## Orthogonal flag
+
+`InMaintenance` (+ `MaintenanceSince`) overlays any primary status. It blocks reserve/dispose and is cleared when no Open/InProgress work orders remain.
+
+```mermaid
+stateDiagram-v2
+  [*] --> Available
+  Available --> Assigned: Checkout
+  Assigned --> Available: Check-in
+  Available --> Reserved: Reserve
+  Reserved --> Available: Cancel / Expire
+  Reserved --> Assigned: Checkout (user target only)
+  Available --> Leased: Lease
+  Leased --> Available: Lease return
+  Available --> Disposed: Dispose
+```
+
+<Warning>
+Do not document maintenance as flipping `PrimaryStatus` to `Maintenance`. Work orders toggle `InMaintenance` only.
+</Warning>

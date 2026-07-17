@@ -1,0 +1,53 @@
+---
+title: "Payload schema v2"
+description: "Locked agent↔backend contract. Backend rejects schema_version != 2."
+---
+
+# Payload schema v2
+
+Contract source: `docs/payload-schema-v2.md`. Wire format: **snake_case**, ISO 8601 UTC with `Z`.
+
+## Envelope
+
+<ResponseField name="schema_version" type="integer" required>
+  Must be `2`.
+</ResponseField>
+<ResponseField name="sync_type" type="string" required>
+  `full` | `delta` | `heartbeat`.
+</ResponseField>
+<ResponseField name="collected_at" type="timestamp" required>
+  UTC collection time.
+</ResponseField>
+<ResponseField name="device_id" type="uuid">
+  Null only on first enrollment payload.
+</ResponseField>
+<ResponseField name="asset_tag" type="string">
+  Optional org-assigned label.
+</ResponseField>
+<ResponseField name="agent" type="object" required>
+  `version`, `os_platform`, `sync_interval_minutes`, `status`, `last_full_sync_at`, `first_enrolled_at`, `last_error`.
+</ResponseField>
+
+## Categories (A–H)
+
+Identity, OS, CPU, Memory, Storage (physical-disk-first), Network, Security (AV array), Software.
+
+Backend strips `installed_patches` and AV arrays into normalized tables before storing the blob.
+
+```json
+{
+  "schema_version": 2,
+  "sync_type": "full",
+  "collected_at": "2026-07-16T12:00:00Z",
+  "device_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "agent": {
+    "version": "1.2.0",
+    "os_platform": "windows",
+    "sync_interval_minutes": 60,
+    "status": "active",
+    "last_full_sync_at": "2026-07-16T06:00:00Z",
+    "first_enrolled_at": "2026-06-01T09:00:00Z",
+    "last_error": null
+  }
+}
+```

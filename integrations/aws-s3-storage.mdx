@@ -1,0 +1,14 @@
+---
+title: "AWS S3 storage"
+description: "IFileStorageService backed by AwsS3Service."
+---
+
+# AWS S3 storage
+
+Config: `Storage:Provider`, `S3Bucket`, `S3Region`, `AccessKey`, `SecretKey` (+ `BasePath` for on-prem intent).
+
+Upload pattern across modules: request upload-urls → client PUT to S3 → POST metadata to API.
+
+<Warning>
+`appsettings.OnPremise.json` may set `Provider: Local`, but DI still registers AWS S3 — local filesystem storage is not implemented.
+</Warning>

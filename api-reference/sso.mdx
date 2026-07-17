@@ -1,0 +1,18 @@
+---
+title: "SSO API"
+description: "Microsoft Entra begin/callback and admin disconnect."
+---
+
+# SSO API
+
+Base: `/api/v1/auth/sso`
+
+| Method | Path | Auth | Body |
+|--------|------|------|------|
+| GET | `/config` | Anonymous | — |
+| POST | `/begin` | Anonymous | `SsoBeginRequest` |
+| POST | `/callback` | Anonymous | `SsoCallbackRequest` |
+| GET | `/status` | Authorize | — |
+| DELETE | `/tenant` | Authorize | — |
+
+`SsoIntent`: Login, Register, Link, AdminConnect.

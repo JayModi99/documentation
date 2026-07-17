@@ -1,0 +1,35 @@
+---
+title: "Categories, models & brands"
+description: "AssetCategory, AssetModel, and Brand schema fields used for classification."
+---
+
+# Categories, models & brands
+
+## AssetCategory (`TenantEntity`)
+
+Defines depreciation defaults and tagging rules for a class of assets. Key concepts:
+
+- Company-scoped category name / code
+- Depreciation method & basis defaults for IA and CA books
+- Links to statutory masters (`IncomeTaxCategory`, `CompaniesActCategory`, power categories)
+- Status toggle (active/inactive)
+
+API: `/api/v1/AssetCategory` — CRUD, status patch, import/export, activity.
+
+## Brand (`AuditableEntity`)
+
+Manufacturer/brand master. Company-scoped via audit + company filters in services. API: `/api/v1/Brand`.
+
+## AssetModel (`AuditableEntity`)
+
+SKU-like model under a brand and category. Referenced by every `Asset.ModelId`. API: `/api/v1/AssetModel`.
+
+## Statutory masters (read via DepreciationMaster)
+
+| Endpoint | Entity |
+|----------|--------|
+| `GET /api/v1/DepreciationMaster/income-tax` | `IncomeTaxCategory` |
+| `GET /api/v1/DepreciationMaster/income-tax-power` | `IncomeTaxPowerCategory` |
+| `GET /api/v1/DepreciationMaster/companies-act` | `CompaniesActCategory` |
+
+Permission: `categories.view`.

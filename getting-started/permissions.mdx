@@ -1,0 +1,36 @@
+---
+title: "Permissions & RBAC"
+description: "Permission keys stored on Role.Permissions and enforced via RequirePermission attributes."
+---
+
+# Permissions & RBAC
+
+Permissions are string keys stored as a JSON array on `Role.Permissions`. Controllers enforce them with `[RequirePermission]` / `[RequireAnyPermission]`.
+
+## Permission catalog (shipped)
+
+| Module | Keys |
+|--------|------|
+| Companies | `companies.view/create/edit/delete/manage_settings` |
+| Sites | `sites.view/create/edit/delete/import/export/manage_categories` |
+| Locations | `locations.view/create/edit/delete/import/export/manage_types` |
+| Departments | `departments.view/create/edit/delete/import/export/manage_categories` |
+| Categories | `categories.view/create/edit/delete/import/export` |
+| Brands | `brands.view/create/edit/delete/import/export` |
+| Models | `models.view/create/edit/delete/import/export/manage_brands/manage_categories` |
+| Assets | `assets.view/create/edit/delete/import/export/dispose/transfer/maintenance/manage_document_categories/manage_conditions` |
+| Asset kits | `assetkits.view/create/edit` |
+| Checkout / Check-in | `checkout.view/create`, `checkin.view/create` |
+| Reserve | `reserve.view/create/cancel` |
+| Lease | `lease.view/create/return/manage_billing` |
+| Maintenance | `maintenance.view/create/edit/complete` |
+| Depreciation | `depreciation.view/edit_settings/generate/lock_fy/unlock_fy/view_change_log/manage` |
+| Users / Roles | `users.*`, `roles.*` |
+| Purchase | `purchase.view/create/edit/approve/close` |
+| Partners | `partners.view/create/edit/delete/import/export/manage_categories` |
+| Consumables | `consumables.view/create/edit/delete/receive/issue/transfer/adjust/dispose/reverse` |
+| Tickets | `tickets.view/view_all/create/update/assign/resolve/close/comment/delete/export` + masters (`tickets.category_*`, `priority_*`, `status_*`, `group_*`, `canned_*`, `settings_*`) |
+| Custom fields | `customfields.view/create/edit/delete/export` |
+| Devices / Agent | `devices.view/revoke/delete/control`, `agenttokens.view/create/revoke`, `agentversions.manage` |
+
+Source of truth: `backend/src/AssetMatePro.Core/Constants/Permissions.cs`.

@@ -1,0 +1,27 @@
+---
+title: "Environments & deployment"
+description: "Cloud vs on-premise knobs, database providers, CORS, and storage."
+---
+
+# Environments & deployment
+
+## Deployment mode
+
+`DeploymentMode` enum / config: `Cloud` | `OnPremise`.
+
+| Setting | Purpose |
+|---------|---------|
+| `Database:Provider` | `Postgres` or `SqlServer` |
+| `ConnectionStrings:DefaultConnection` | EF Core connection |
+| `Cors:AllowedOrigins` | SPA / mobile origins |
+| `AppUrl` | Links inside emails |
+| `Storage:Provider` | Intended `S3` / `Local` — **runtime DI currently registers AWS S3** |
+| `TagScan:PublicBaseUrl` | Public asset tag base (e.g. `https://i.my-tag.net`) |
+
+## Health
+
+`GET /health` — anonymous liveness probe.
+
+## Local development
+
+See the engineering guide in `docs/LOCAL_DEV.md` for running API + frontend together. Swagger is enabled in Development.

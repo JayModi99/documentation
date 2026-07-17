@@ -1,0 +1,29 @@
+---
+title: "Depreciation API"
+description: "Settings, schedules, locks, tax regime, and compliance reports."
+---
+
+# Depreciation API
+
+Base: `/api/v1/Depreciation`
+
+| Method | Path | Permission |
+|--------|------|------------|
+| GET | `/{assetId}/settings` | Authorize |
+| PUT | `/{assetId}/settings` | `depreciation.edit_settings` |
+| GET | `/{assetId}/schedule` | view |
+| GET | `/{assetId}/snapshot` | view |
+| GET | `/{assetId}/dual-snapshot` | view |
+| POST | `/{assetId}/generate` | generate |
+| GET | `/{assetId}/change-log` | view_change_log |
+| GET | `/fy-locks` | view |
+| GET | `/fy-locks/{fyStartYear}/months` | view |
+| POST | `/fy-locks/lock-fy` | lock_fy |
+| POST | `/fy-locks/unlock-fy` | unlock_fy |
+| POST | `/fy-locks/lock-month` | lock_fy |
+| POST | `/fy-locks/unlock-month` | unlock_fy |
+| GET | `/tax-settings` | view |
+| PUT | `/tax-settings` | edit_settings |
+| GET | `/it-block-summary` | view |
+| GET | `/compliance-report` | view |
+| GET | `/compliance-report/export` | view |

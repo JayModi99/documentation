@@ -1,0 +1,43 @@
+---
+title: "Users & roles API"
+description: "User CRUD/invite/import and Role permission management."
+---
+
+# Users & roles API
+
+## Users — `/api/v1/User`
+
+| Method | Path | Permission |
+|--------|------|------------|
+| GET | `/` | `users.view` |
+| GET | `/export` | `users.export` |
+| GET | `/import/template` | `users.import` |
+| POST | `/import` | `users.import` |
+| GET | `/{id}` | `users.view` |
+| POST | `/invite` | `users.create` |
+| PUT | `/{id}` | `users.edit` |
+| PATCH | `/{id}/status` | `users.edit` |
+| DELETE | `/{id}` | `users.delete` |
+| POST | `/{id}/resend-invite` | `users.edit` |
+| POST | `/{id}/reset-password` | `users.edit` |
+| GET | `/{id}/activity` | `users.view` |
+| GET | `/assignable` | `tickets.assign` |
+
+## Roles — `/api/v1/Role`
+
+| Method | Path | Permission |
+|--------|------|------------|
+| GET | `/` | `roles.view` |
+| GET | `/export` | `roles.export` |
+| GET | `/permissions` | `roles.view` |
+| GET | `/{id}` | `roles.view` |
+| POST | `/` | `roles.create` |
+| PUT | `/{id}` | `roles.edit` |
+| PATCH | `/{id}/status` | `roles.edit` |
+| DELETE | `/{id}` | `roles.delete` |
+| GET | `/{id}/activity` | `roles.view` |
+
+## Documents
+
+`/api/v1/DocumentCategory` — GET/POST/PUT/DELETE  
+`/api/v1/UserDocument` — list, upload-urls, metadata, delete, get URL

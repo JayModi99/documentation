@@ -1,0 +1,46 @@
+---
+title: "Reserve & Lease API"
+description: "Reservation batches and lease/return/billing endpoints."
+---
+
+# Reserve & Lease API
+
+## Reserve — `/api/v1/Reserve`
+
+| Method | Path | Permission |
+|--------|------|------------|
+| POST | `/attachment-upload-urls` | create |
+| POST | `/` | create (`BulkCreateReserveRequest`) |
+| GET | `/history` | view |
+| GET | `/{id}/detail` | view |
+| POST | `/{id}/attachments` | create |
+| DELETE | `/attachments/{attachmentId}` | create |
+| POST | `/batch/{batchId}/cancel` | cancel |
+| POST | `/batch/{batchId}/cancel-assets` | cancel |
+| POST | `/bulk-cancel` | cancel |
+| POST | `/bulk-cancel-batches` | cancel |
+| POST | `/expire-overdue` | cancel |
+
+## Lease — `/api/v1/Lease`
+
+| Method | Path | Permission |
+|--------|------|------------|
+| POST | `/` | create |
+| GET | `/history` | view |
+| GET | `/{id}` | view |
+| PUT | `/{id}` | create |
+| GET | `/{id}/activity` | view |
+| GET | `/by-asset/{assetId}` | view |
+| GET | `/{id}/billing` | view |
+| PATCH | `/billing/{id}/status` | manage_billing |
+| POST | `/return` | return |
+| GET | `/return/history` | return |
+| GET | `/return/{id}` | return |
+| PUT | `/return/{id}` | return |
+| GET | `/return/{id}/activity` | return |
+| POST | `/attachments/upload-urls` | create |
+| POST | `/{id}/attachments` | create |
+| DELETE | `/attachments/{attachmentId}` | create |
+| POST | `/return/attachments/upload-urls` | return |
+| POST | `/return/{id}/attachments` | return |
+| DELETE | `/return/attachments/{attachmentId}` | return |

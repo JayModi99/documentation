@@ -1,0 +1,15 @@
+---
+title: "Stock balances"
+description: "On-hand and low-stock queries."
+---
+
+# Stock balances
+
+Balance key: `(ConsumableModelId, SiteId, LocationId)` on `ConsumableStockBalance`.
+
+| Method | Path |
+|--------|------|
+| GET | `/api/v1/ConsumableStock` |
+| GET | `/api/v1/ConsumableStock/low-stock` |
+
+Permission: `consumables.view`.

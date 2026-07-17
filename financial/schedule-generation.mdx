@@ -1,0 +1,22 @@
+---
+title: "Schedule generation"
+description: "How DepreciationService builds and regenerates entries."
+---
+
+# Schedule generation
+
+`POST /api/v1/Depreciation/{assetId}/generate` · Permission: `depreciation.generate`
+
+## Gate
+
+Requires `IsDepreciationEnabled` and `PutToUseDate`.
+
+## Rules enforced
+
+- Salvage &lt; cost
+- Opening accum. dep. ≤ cost − salvage
+- 180-day first-year half-rate for IA (day count)
+- Locked periods preserved
+- Dispose regenerates schedule ending on disposal date
+
+View: `GET …/schedule?book=&view=&fy=&from=&to=`

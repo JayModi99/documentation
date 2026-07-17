@@ -1,0 +1,11 @@
+---
+title: "Microsoft Entra SSO"
+description: "OIDC id_token validation for SPA and mobile."
+---
+
+# Microsoft Entra SSO
+
+Config: `AzureAd:Authority`, `ClientId`, `RequireAdminConsentForRegister`, `AllowSelfSignup`.  
+No `ClientSecret` in this SPA/mobile flow.
+
+See [Authentication](/getting-started/authentication) for endpoints and `SsoIntent` values. Engineering setup notes live in `docs/sso-azure-setup.md`.

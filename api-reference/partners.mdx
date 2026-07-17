@@ -1,0 +1,30 @@
+---
+title: "Partners API"
+description: "Vendors/customers, categories, and documents."
+---
+
+# Partners API
+
+Base: `/api/v1/partners`
+
+| Method | Path | Permission |
+|--------|------|------------|
+| GET | `/` | view |
+| GET | `/{id}` | view |
+| POST | `/` | create |
+| PUT | `/{id}` | edit |
+| PATCH | `/{id}/toggle-status` | edit |
+| DELETE | `/{id}` | delete |
+| GET | `/export` | export |
+| GET | `/import/template` | import |
+| POST | `/import` | import |
+| GET | `/{id}/activity` | view |
+| GET | `/categories` | view |
+| POST | `/categories` | manage_categories |
+| PUT | `/categories/{id}` | manage_categories |
+| DELETE | `/categories/{id}` | manage_categories |
+| GET | `/{id}/documents` | view |
+| POST | `/documents/upload-urls` | edit |
+| POST | `/{id}/documents` | edit |
+| DELETE | `/{id}/documents/{docId}` | edit |
+| GET | `/{id}/documents/{docId}/url` | view |

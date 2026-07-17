@@ -1,0 +1,47 @@
+---
+title: "Quickstart"
+description: "Go from zero to a registered company, first asset, and first checkout in AssetMate Pro."
+---
+
+# Quickstart
+
+<Steps>
+  <Step title="Register an account">
+    Call `POST /api/v1/auth/register` with email and password, then verify via OTP (`POST /api/v1/auth/verify-email`).
+
+    ```bash
+    curl -X POST "$API/api/v1/auth/register" \
+      -H "Content-Type: application/json" \
+      -d '{"email":"admin@acme.com","password":"SecurePass1!","fullName":"Admin User"}'
+    ```
+  </Step>
+  <Step title="Create or join a company">
+    After login, call `POST /api/v1/auth/setup-company` with company profile fields (name, industry, size, country). The response returns a JWT scoped to that company.
+  </Step>
+  <Step title="Seed master data">
+    Create at least one **Site**, **Location**, **Brand**, **Asset Category**, and **Asset Model** before creating assets. Use the Web Dashboard masters screens or the corresponding APIs under `/api/v1/Site`, `/api/v1/Location`, `/api/v1/Brand`, `/api/v1/AssetCategory`, `/api/v1/AssetModel`.
+  </Step>
+  <Step title="Create an asset">
+    `POST /api/v1/Assets` with `CreateAssetDto` (model, category, site, optional serial, cost fields). Asset tags can be previewed with `GET /api/v1/Assets/preview-next-tag`.
+  </Step>
+  <Step title="Run a checkout">
+    Prefer the batch lifecycle API: `POST /api/v1/Checkout` with asset IDs and assignment mode (`User` or `Location`). Do not use the deprecated single-asset check-in on `AssetActions`.
+  </Step>
+</Steps>
+
+<Tabs>
+  <Tab title="Web Dashboard Guide">
+    1. Open the Angular app and complete registration / email OTP.
+    2. Finish **Company Setup**.
+    3. Navigate **Masters → Sites / Locations / Brands / Categories / Models**.
+    4. Open **Assets → Create**, then **Checkout** from the actions menu or workflow screen.
+  </Tab>
+  <Tab title="Mobile/Scanner App Guide">
+    1. Sign in with the same credentials (or Microsoft SSO if configured).
+    2. Use **Scan** to resolve an asset tag QR/URL.
+    3. From the asset detail sheet, start checkout / check-in when the asset status allows it.
+  </Tab>
+  <Tab title="API/CLI Method">
+    Authenticate with `POST /api/v1/auth/login`, store `accessToken`, and send `Authorization: Bearer <token>` plus company context from the JWT claims. All subsequent calls use the company embedded in the token; switch with `POST /api/v1/auth/switch-company`.
+  </Tab>
+</Tabs>

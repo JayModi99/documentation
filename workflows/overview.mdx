@@ -1,0 +1,21 @@
+---
+title: "Lifecycle workflows overview"
+description: "How assets move through checkout, reserve, lease, maintenance, and dispose."
+---
+
+# Lifecycle workflows overview
+
+Production lifecycle operations use **dedicated transaction controllers**, not the legacy `AssetActionsController` (except transfer and thin checkout).
+
+| Workflow | Controller | Service | Eligibility helper |
+|----------|------------|---------|-------------------|
+| Checkout | `CheckoutController` | `CheckoutService` | `AssetCheckoutEligibility` |
+| Check-in | `CheckInController` | `CheckInService` | `AssetCheckInEligibility` |
+| Reserve | `ReserveController` | `ReserveService` | `AssetReserveEligibility` |
+| Lease | `LeaseController` | `LeaseService` | `AssetLeaseEligibility` |
+| Dispose | `DisposeController` | `DisposeService` | `AssetDisposeEligibility` |
+| Maintenance | `MaintenanceController` | `MaintenanceService` | `AssetMaintenanceEligibility` |
+
+Each workflow creates transaction rows + `AssetAction` audit entries and may save custom field values for its form name.
+
+Use the `*-available` list endpoints on `/api/v1/Assets` to drive pickers with the same eligibility rules.

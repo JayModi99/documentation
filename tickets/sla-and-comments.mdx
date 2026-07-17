@@ -1,0 +1,11 @@
+---
+title: "SLA & comments"
+description: "First response timestamp and comment/attachment APIs."
+---
+
+# SLA & comments
+
+- First **public agent** comment sets `FirstRespondedAt`
+- `POST /api/v1/Ticket/{id}/comments` · Permission: `tickets.comment`
+- Attachment upload-urls: `POST /api/v1/Ticket/attachment-upload-urls`
+- Reopen clears resolution/closed timestamps, keeps assignee, resets SLA clocks

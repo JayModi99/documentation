@@ -1,0 +1,29 @@
+---
+title: "Ticket entities"
+description: "Ticket, comments, attachments, and configurable masters."
+---
+
+# Ticket entities
+
+## Ticket (`TenantEntity`)
+
+Helpdesk ticket with dual status model:
+
+- **Logic stage:** `TicketStatusSetting.Stage` → `TicketStage`
+- **Legacy column:** `Ticket.Status` / `Ticket.Priority` kept in sync for dashboards
+
+Key relationships: category, status setting, priority setting, requester, assignee, optional asset/device links, SLA timestamps (`FirstRespondedAt`, due dates), number format from company settings.
+
+## Masters
+
+| Entity | Notes |
+|--------|-------|
+| `TicketCategory` | Default group, default flag, active flag |
+| `TicketStatusSetting` | Label + `TicketStage` + colors/order |
+| `TicketPrioritySetting` | Label + Rank + colors |
+| `TicketAgentGroup` + `TicketAgentGroupMember` | Agent pools |
+| `TicketCannedResponse` | Named body ≤ 4000 chars |
+| `TicketComment` | Public/internal comments |
+| `TicketAttachment` | File metadata |
+
+Company also stores ticket number format fields (prefix/padding/next sequence) used by settings APIs.

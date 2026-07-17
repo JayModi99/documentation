@@ -1,0 +1,23 @@
+---
+title: "Scans & asset tags"
+description: "Authenticated scan resolve and anonymous public tag scans."
+---
+
+# Scans & asset tags
+
+## Authenticated resolve
+
+`POST /api/v1/scans/resolve` · Permission: `assets.view`  
+Body: `ScanResolveRequest` — resolves tag/QR payloads for mobile/web scanners.
+
+## Public tag scan
+
+`POST /api/v1/public/scans` · Anonymous + rate limit  
+Uses `TagScan:PublicBaseUrl`. Outcomes: `Found` | `NotFound` | `WrongCompany` (`AssetScanOutcome`).
+
+Sources: `MobileApp` | `PublicUrl` | `WebApp`.
+
+## Tag URL
+
+`GET /api/v1/Assets/{id}/tag-url` returns the public tag link.  
+`GET /api/v1/Assets/{id}/scan-history` returns `AssetScanLog` history.

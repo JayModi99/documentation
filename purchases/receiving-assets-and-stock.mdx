@@ -1,0 +1,22 @@
+---
+title: "Receiving assets & stock"
+description: "What happens when a PO is received."
+---
+
+# Receiving assets & stock
+
+`POST /api/v1/PurchaseOrder/{id}/receive` with `ReceivePurchaseOrderRequest`.
+
+## Guards
+
+- Status Approved or PartiallyReceived
+- Delivery site required
+- Consumable lines need location
+- Qty ≤ remaining
+
+## Effects
+
+- Creates `PurchaseOrderReceipt` (+ lines)
+- Asset lines → new `Asset` rows at `Available` (linked via `PurchaseOrderReceiptAsset`)
+- Consumable lines → receive stock transactions / balances
+- GST treatment `Capitalize` vs `InputCredit` affects capitalized cost

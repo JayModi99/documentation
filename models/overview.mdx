@@ -1,0 +1,35 @@
+---
+title: "Data models overview"
+description: "99 concrete entity types across auth, assets, purchases, tickets, consumables, and IT agent domains."
+---
+
+# Data models overview
+
+AssetMate Pro persists ~99 concrete entity types via EF Core. Inheritance:
+
+```
+BaseEntity          Id, CreatedAt, UpdatedAt, IsDeleted
+  └─ AuditableEntity   + CreatedBy, UpdatedBy
+       └─ TenantEntity + AccountId
+```
+
+## Domain map
+
+| Domain | Key entities |
+|--------|----------------|
+| Tenant | `Account`, `Company`, `Plan`, `AccountSubscription` |
+| Auth | `User`, `Role`, `UserCompanyAccess`, `RefreshToken`, `OtpCode`, `ExternalUserLogin`, `ExternalLoginChallenge`, `UserDocument`, `DocumentCategory` |
+| Masters | `Country`, `State`, `City`, `Industry`, `CompanySize`, `Partner*`, statutory depreciation categories |
+| Org structure | `Site`, `SiteCategory`, `Location`, `LocationType`, `Department`, `Brand`, `AssetModel` |
+| Assets | `Asset`, `AssetCategory`, `AssetCondition`, `AssetDocument`, `AssetAction`, `AssetKit`, `AssetScanLog` |
+| Lifecycle txns | Checkout/CheckIn/Reserve/Lease/Dispose/Maintenance (+ attachments, billing, cost lines) |
+| Depreciation | `DepreciationEntry`, `DepreciationPeriodLock`, `DepreciationChangeLog` |
+| Purchases | `PurchaseRequest`, `PurchaseOrder`, lines, receipts, attachments |
+| Consumables | Category, Model, Photo, UoM, StockBalance, Transaction |
+| Tickets | Ticket, Comment, Attachment, Status/Priority settings, Category, AgentGroup, CannedResponse |
+| IT Agent | Device, OrgToken, Enrollment, Software, AV, Patches, ChangeLog, PerfSnapshot, Command, AgentVersion |
+| Cross-cutting | `CustomField*`, `AuditLog`, `NotificationTemplate` |
+
+<Note>
+`DirectoryIntegration` exists as an entity class but has **no DbSet** and no shipped directory-sync APIs.
+</Note>

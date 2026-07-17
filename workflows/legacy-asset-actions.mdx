@@ -1,0 +1,21 @@
+---
+title: "Legacy AssetActions API"
+description: "What still works on AssetActionsController and what is deprecated."
+---
+
+# Legacy AssetActions API
+
+Base: `/api/v1/AssetActions`
+
+| Endpoint | Status |
+|----------|--------|
+| `POST …/{assetId}/checkout` | Thin single-asset checkout via `AssetActionService` — weaker than batch Checkout |
+| `POST …/{assetId}/checkin` | **410 Gone** — use `/api/v1/CheckIn` |
+| `POST …/{assetId}/transfer` | Supported |
+| `POST …/{assetId}/maintenance` | Sets `InMaintenance` only — does **not** create a WO |
+| `POST …/{assetId}/dispose` | Weaker than `DisposeService` (only blocks Assigned) |
+| `GET …/{assetId}/history` | Ordered `AssetAction` history |
+
+<Warning>
+New integrations must use the dedicated Checkout, CheckIn, Reserve, Lease, Maintenance, and Dispose controllers.
+</Warning>

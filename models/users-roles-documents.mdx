@@ -1,0 +1,26 @@
+---
+title: "Users, roles & documents"
+description: "User, Role, UserCompanyAccess, and user document entities."
+---
+
+# Users, roles & documents
+
+## User (`TenantEntity`)
+
+Includes status (`UserStatus`: Active, Inactive, Locked, PendingVerification), profile fields, role assignment, and SSO links via `ExternalUserLogin`.
+
+API: `/api/v1/User` — list/export/import/invite/update/status/delete/resend-invite/admin-reset/activity/assignable.
+
+## Role (`TenantEntity`)
+
+`Permissions` JSON array of permission keys. API: `/api/v1/Role` (+ `/permissions` catalog).
+
+## UserCompanyAccess (`BaseEntity`)
+
+Maps a user to a company (and role) within an account.
+
+## User documents
+
+`DocumentCategory` + `UserDocument` with S3 upload-url → metadata pattern.
+
+API: `/api/v1/DocumentCategory`, `/api/v1/UserDocument`.

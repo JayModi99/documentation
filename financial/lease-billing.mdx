@@ -1,0 +1,14 @@
+---
+title: "Lease billing"
+description: "Billing records, statuses, and the overdue background job."
+---
+
+# Lease billing
+
+Records created with leases. Statuses: Pending, Paid, Overdue, Cancelled.
+
+- List: `GET /api/v1/Lease/{id}/billing`
+- Update: `PATCH /api/v1/Lease/billing/{id}/status` (`lease.manage_billing`)
+- Job: `LeaseBillingOverdueBackgroundService` — config `Lease:BillingOverdue:Enabled`, `IntervalMinutes` (default 60)
+
+Paid records: only payment details updatable; cancelled records locked.

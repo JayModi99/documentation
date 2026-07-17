@@ -1,0 +1,21 @@
+---
+title: "Enrollment"
+description: "Org token bootstrap to device JWT."
+---
+
+# Enrollment
+
+```mermaid
+sequenceDiagram
+  participant Admin
+  participant API
+  participant Agent
+  Admin->>API: POST /api/v1/agent-tokens
+  API-->>Admin: plaintext token (once)
+  Agent->>API: POST /api/v1/agent/enroll (X-Org-Token)
+  API-->>Agent: device JWT (365d, role=device)
+  Agent->>Agent: DPAPI encrypt config; wipe org token
+  Agent->>API: POST /api/v1/agent/sync (first payload)
+```
+
+Rate limit: 10 enrolls/hour/IP. Outcomes audited in `DeviceEnrollment`.

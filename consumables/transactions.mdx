@@ -1,0 +1,19 @@
+---
+title: "Consumable transactions"
+description: "Receive, issue, transfer, adjust, dispose, and reverse."
+---
+
+# Consumable transactions
+
+Base: `/api/v1/ConsumableTransaction`
+
+| Type | Path | Stock effect | Permission |
+|------|------|--------------|------------|
+| Receive | `POST /receive` | + ToSite/Location | `consumables.receive` |
+| Issue | `POST /issue` | − From | `consumables.issue` |
+| Transfer | `POST /transfer` | − from, + to | `consumables.transfer` |
+| Adjust | `POST /adjust` | ± signed qty | `consumables.adjust` |
+| Dispose | `POST /dispose` | − from | `consumables.dispose` |
+| Reverse | `POST /{id}/reverse` | Inverse once | `consumables.reverse` |
+
+Issue targets (mutually exclusive): Asset | User | Site | Location | Customer — or a generic use reason.

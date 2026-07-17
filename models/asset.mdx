@@ -1,0 +1,180 @@
+---
+title: "Asset entity"
+description: "Complete field map for Asset — the central fixed-asset register row."
+---
+
+# Asset entity
+
+`Asset` inherits `TenantEntity` and is the central register row. Source: `backend/src/AssetMatePro.Core/Entities/Assets/Asset.cs`.
+
+## Identifiers
+
+<ResponseField name="AssetTagId" type="string" required>
+  Business tag. **Immutable after creation.**
+</ResponseField>
+<ResponseField name="SerialNumber" type="string">
+  Optional manufacturer serial.
+</ResponseField>
+<ResponseField name="CompanyId" type="uuid" required>
+  Owning company.
+</ResponseField>
+
+## Classification
+
+<ResponseField name="ModelId" type="uuid" required>
+  FK → `AssetModel`.
+</ResponseField>
+<ResponseField name="AssetCategoryId" type="uuid" required>
+  FK → `AssetCategory`.
+</ResponseField>
+
+## Assignment & location
+
+<ResponseField name="SiteId" type="uuid" required>
+  Current site.
+</ResponseField>
+<ResponseField name="LocationId" type="uuid">
+  Optional location under the site.
+</ResponseField>
+<ResponseField name="DepartmentId" type="uuid">
+  Optional department.
+</ResponseField>
+<ResponseField name="OwnershipMode" type="enum OwnershipMode" required>
+  `Owned` (1) or `Leased` (2). Default `Owned`.
+</ResponseField>
+<ResponseField name="LessorId" type="uuid">
+  Partner FK when ownership is leased-in.
+</ResponseField>
+<ResponseField name="LeaseStartDate" type="datetime">
+  Lease-in start.
+</ResponseField>
+<ResponseField name="LeaseEndDate" type="datetime">
+  Lease-in end.
+</ResponseField>
+<ResponseField name="LeaseReference" type="string">
+  External lease reference text.
+</ResponseField>
+
+## Financial & depreciation
+
+<ResponseField name="IsDepreciationEnabled" type="boolean" required>
+  When true, cost + purchase date are required to generate schedules.
+</ResponseField>
+<ResponseField name="PurchaseCost" type="decimal">
+  Capitalized cost. Required when depreciation enabled.
+</ResponseField>
+<ResponseField name="PurchaseDate" type="datetime">
+  Purchase date. Required when depreciation enabled.
+</ResponseField>
+<ResponseField name="PutToUseDate" type="datetime">
+  If null while depreciation is enabled, asset is treated as **CWIP** (no schedule rows).
+</ResponseField>
+<ResponseField name="VendorId" type="uuid">
+  Partner vendor FK.
+</ResponseField>
+<ResponseField name="PONumber" type="string">
+  Free-text PO number.
+</ResponseField>
+<ResponseField name="PurchaseOrderId" type="uuid">
+  FK to received `PurchaseOrder` when created via receiving.
+</ResponseField>
+<ResponseField name="InvoiceNo" type="string">
+  Invoice number.
+</ResponseField>
+<ResponseField name="InvoiceDate" type="datetime">
+  Invoice date.
+</ResponseField>
+
+### IA (Income Tax) overrides
+
+<ResponseField name="SalvageValueTypeIA" type="enum SalvageValueType">
+  `FixedAmount` | `Percentage`.
+</ResponseField>
+<ResponseField name="SalvageValueIA" type="decimal">
+  Salvage amount or percent for IA book.
+</ResponseField>
+<ResponseField name="AssetLifeTypeIA" type="enum AssetLifeType">
+  `Days` | `Months` | `Years`.
+</ResponseField>
+<ResponseField name="AssetLifeIA" type="integer">
+  Life magnitude for IA.
+</ResponseField>
+<ResponseField name="DepreciationRateOverrideIA" type="decimal">
+  Optional % override when category uses rate basis.
+</ResponseField>
+
+### CA (Companies Act) overrides
+
+Same shape as IA: `SalvageValueTypeCA`, `SalvageValueCA`, `AssetLifeTypeCA`, `AssetLifeCA`, `DepreciationRateOverrideCA`.
+
+### Opening balances
+
+<ResponseField name="EnableOpeningAccDep" type="boolean" required>
+  Whether opening accumulated depreciation is applied.
+</ResponseField>
+<ResponseField name="OpeningAccDepIA" type="decimal">
+  Opening accum. dep. for IA.
+</ResponseField>
+<ResponseField name="OpeningAccDepCA" type="decimal">
+  Opening accum. dep. for CA.
+</ResponseField>
+<ResponseField name="OpeningDepTillDate" type="datetime">
+  Date through which opening dep is considered.
+</ResponseField>
+
+## State management
+
+<ResponseField name="PrimaryStatus" type="enum AssetPrimaryStatus" required>
+  `Available` | `Assigned` | `Leased` | `Reserved` | `Disposed` | `Maintenance`. Default `Available`.
+</ResponseField>
+<ResponseField name="InMaintenance" type="boolean" required>
+  Orthogonal flag. Maintenance WOs set this without changing `PrimaryStatus` to `Maintenance`.
+</ResponseField>
+<ResponseField name="MaintenanceSince" type="datetime">
+  When `InMaintenance` became true.
+</ResponseField>
+<ResponseField name="ConditionId" type="uuid">
+  FK → `AssetCondition` (physical condition master).
+</ResponseField>
+<ResponseField name="AssignedToUserId" type="uuid">
+  Current assignee when `Assigned`.
+</ResponseField>
+<ResponseField name="PreviousAssignedToUserId" type="uuid">
+  Previous assignee.
+</ResponseField>
+<ResponseField name="ExpectedReturnDate" type="datetime">
+  Expected return for user checkout; overdue is derived.
+</ResponseField>
+
+## Hierarchy
+
+<ResponseField name="ParentAssetId" type="uuid">
+  Assembly parent.
+</ResponseField>
+<ResponseField name="IsComponent" type="boolean" required>
+  True when this asset is a component of a parent.
+</ResponseField>
+<ResponseField name="ComponentOrder" type="integer" required>
+  Sort order among siblings.
+</ResponseField>
+<ResponseField name="AssetKitId" type="uuid">
+  Optional kit membership.
+</ResponseField>
+<ResponseField name="Description" type="string">
+  Free-text description.
+</ResponseField>
+
+## Disposal
+
+<ResponseField name="DisposalDate" type="datetime">
+  Set on dispose.
+</ResponseField>
+<ResponseField name="DisposalReason" type="string">
+  Dispose reason text.
+</ResponseField>
+<ResponseField name="DisposalReinstatedAt" type="datetime">
+  Reinstatement timestamp (if used).
+</ResponseField>
+<ResponseField name="DisposalReinstatedReason" type="string">
+  Reinstatement reason.
+</ResponseField>

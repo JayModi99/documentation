@@ -1,0 +1,11 @@
+---
+title: "Validation & storage"
+description: "FieldKey rules, immutability, and CustomFieldValue storage."
+---
+
+# Validation & storage
+
+- `FieldKey` must match `^[a-z][a-z0-9_]*$`
+- After create: FormName, FieldType, FieldKey immutable
+- Delete supports `forceArchive` query
+- Values: `CustomFieldValue` rows written by module services on create/update

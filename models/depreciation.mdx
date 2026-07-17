@@ -1,0 +1,17 @@
+---
+title: "Depreciation entities"
+description: "DepreciationEntry, period locks, and change logs."
+---
+
+# Depreciation entities
+
+| Entity | Role |
+|--------|------|
+| `DepreciationEntry` | Per-period schedule row for a book (`IA` / `CA`) |
+| `DepreciationPeriodLock` | FY or month lock preventing regen/dispose into locked periods |
+| `DepreciationChangeLog` | Audit of settings/schedule changes |
+
+Books: `DepreciationBook.IA` | `DepreciationBook.CA`.  
+Lock source: `PeriodLockSource.Manual` (and related values in `AppEnums`).
+
+Company-level tax regime: `IncomeTaxDepreciationRegime` (`WdvBlock`, `PowerSlm`, `PowerWdvBlock`).

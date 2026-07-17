@@ -1,0 +1,34 @@
+---
+title: "Checkout & Check-in API"
+description: "Batch lifecycle checkout and check-in endpoints."
+---
+
+# Checkout & Check-in API
+
+## Checkout — `/api/v1/Checkout`
+
+| Method | Path | Permission |
+|--------|------|------------|
+| GET | `/history` | `checkout.view` |
+| GET | `/{id}/detail` | view |
+| GET | `/{id}/activity` | view |
+| POST | `/` | `checkout.create` |
+| POST | `/attachment-upload-urls` | create |
+| POST | `/{id}/attachments` | create |
+| DELETE | `/attachments/{attachmentId}` | create |
+| POST | `/acknowledgement-email` | create |
+
+Body for create: `CreateCheckoutRequest`.
+
+## Check-in — `/api/v1/CheckIn`
+
+| Method | Path | Permission |
+|--------|------|------------|
+| GET | `/history` | `checkin.view` |
+| GET | `/{id}/detail` | view |
+| POST | `/` | `checkin.create` |
+| POST | `/attachment-upload-urls` | create |
+| POST | `/{id}/attachments` | create |
+| DELETE | `/attachments/{attachmentId}` | create |
+
+Body: `CreateCheckInRequest`.
